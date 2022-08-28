@@ -1,0 +1,15 @@
+/*
+ * @author Johnathon Zheng
+ * @version August 26, 2022
+ * Client code that will test the math library and test the methods in the calculate class
+ */
+public class DoMath {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Calculate.square(2);
+		Calculate.square(0);
+		Calculate.square(-3);
+	}
+
+}
