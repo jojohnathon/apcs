@@ -91,13 +91,13 @@ public class Calculate {
 	 
 	 public static double max(double a, double b, double c) {
 		 double answer = a;
-		 if (a < b) {
-			 answer = b;
-		 } else if (b < c) {
-			 answer = c;
+		 if (b >= a && b >= c) {
+			answer = b;
+		 } else if (c >= a && c >= a) {
+			answer = c;
 		 }
 		 return answer;
-	 }
+	}
 	 
 	 public static int min(int a, int b) {
 		 int answer = a;

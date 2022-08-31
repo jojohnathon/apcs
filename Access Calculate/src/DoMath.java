@@ -50,7 +50,26 @@ public class DoMath {
 		System.out.println("isDivisibleBy: ");
 		System.out.println(Calculate.isDivivsibleBy(-2, 2));
 		System.out.println(Calculate.isDivivsibleBy(1, 3));
-		
+		System.out.println(Calculate.isDivivsibleBy(0, 100));
+		//abs value
+		System.out.println("absolute value:");
+		System.out.println(Calculate.absValue(-20));
+		System.out.println(Calculate.absValue(100.1));
+		//max
+		System.out.println("max:");
+		System.out.println(Calculate.max(2.5, 3));
+		System.out.println(Calculate.max(-3, 100.5));
+		//max overload
+		System.out.println(Calculate.max(-3, -20, 1));
+		System.out.println(Calculate.max(50.25, -20.1, 30));
+		//min
+		System.out.println("min:");
+		System.out.println(Calculate.min(2, 7));
+		System.out.println(Calculate.min(-10, 0));
+		//round2
+		System.out.println("round2");
+		System.out.println(Calculate.round2(3.14159));
+		System.out.println(Calculate.round2(-2.718));
 	}
 
 }
