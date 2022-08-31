@@ -61,7 +61,7 @@ public class Calculate {
 	 //does foil method
 	 public static String foil(int a, int b, int c, int d, String n) {
 		 String answer;
-		 answer = (a * b + n + "^2") + (a * d + n) + (b * c + n) + (b * d);
+		 answer = (a * c + n + "^2") + "+" + ((a * d) + (b * c))  + n + "+" + (b * d);
 		 return answer;
 	 }
 	 
