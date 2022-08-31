@@ -46,11 +46,6 @@ public class DoMath {
 		System.out.println("foil:");
 		System.out.println(Calculate.foil(2, 3, 6, -7, "n"));
 		System.out.println(Calculate.foil(1, 1, 1, -1, "x"));
-		//divisble by
-		System.out.println("isDivisibleBy: ");
-		System.out.println(Calculate.isDivivsibleBy(-2, 2));
-		System.out.println(Calculate.isDivivsibleBy(1, 3));
-		
 	}
 
 }

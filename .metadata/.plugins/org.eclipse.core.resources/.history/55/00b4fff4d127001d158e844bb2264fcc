@@ -58,7 +58,7 @@ public class Calculate {
 		 answer = a / b + "_" + a % b + "/" + String.valueOf(b);
 		 return answer;
 	 }
-	 //does foil method
+	 
 	 public static String foil(int a, int b, int c, int d, String n) {
 		 String answer;
 		 answer = (a * b + n + "^2") + (a * d + n) + (b * c + n) + (b * d);
@@ -71,56 +71,6 @@ public class Calculate {
 			 answer = true;
 		 }
 		 return answer;
-	 }
-	 
-	 public static double absValue(double a) {
-		 double answer = a;
-		 if (a < 0) {
-			 answer /= -1;
-		 }
-		 return answer;
-	 }
-	 
-	 public static double max(double a, double b) {
-		 double answer = a;
-		 if (a < b) {
-			 answer = b;
-		 }
-		 return answer;
-	 }
-	 
-	 public static double max(double a, double b, double c) {
-		 double answer = a;
-		 if (a < b) {
-			 answer = b;
-		 } else if (b < c) {
-			 answer = c;
-		 }
-		 return answer;
-	 }
-	 
-	 public static int min(int a, int b) {
-		 int answer = a;
-		 if (a > b) {
-			 answer = b;
-		 }
-		 return answer;
-	 }
-	 
-	 public static double round2(double a) {
-		 if (a > 0) {
-			 double answer = (a * 100) + 0.5; //convert to int
-			 int answer1 = (int)answer; //truncate 
-			 double answer2 = (double)answer1/100; //convert back to double
-			 return answer2;
-		 } else {
-			 double answer = (a * 100) - 0.5; //convert to int
-			 int answer1 = (int)answer; //truncate 
-			 double answer2 = (double)answer1/100; //convert back to double
-			 return answer2;
-		 }
-		 
-		 
 	 }
 	 
 	 
