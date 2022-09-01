@@ -62,6 +62,7 @@ public class DoMath {
 		//max overload
 		System.out.println(Calculate.max(-3, -20, 1));
 		System.out.println(Calculate.max(50.25, -20.1, 30));
+		System.out.println(Calculate.max(-2, -69, 54));
 		//min
 		System.out.println("min:");
 		System.out.println(Calculate.min(2, 7));
