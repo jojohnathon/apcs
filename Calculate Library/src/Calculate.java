@@ -152,5 +152,9 @@ public class Calculate {
 
 		return true;
 	 }
+
+	 public static int gcf(int a, int b) {
+		
+	 }
 	 
 }
