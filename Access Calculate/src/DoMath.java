@@ -83,6 +83,14 @@ public class DoMath {
 		System.out.println("IsPrime: ");
 		System.out.println(Calculate.isPrime(11));
 		System.out.println(Calculate.isPrime(0));
+		
+		//sqrt
+		System.out.println("Square root: ");
+		System.out.println(Calculate.sqrt(4));
+		System.out.println(Calculate.sqrt(612));
+		System.out.println(Calculate.sqrt(10));
+		System.out.println(Calculate.sqrt(1024));
+		System.out.println(Calculate.sqrt(100));
 
 
 	}
