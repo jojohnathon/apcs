@@ -90,6 +90,7 @@ public class DoMath {
 		System.out.println(Calculate.sqrt(612));
 		System.out.println(Calculate.sqrt(10));
 		System.out.println(Calculate.sqrt(1024));
+		System.out.println(Calculate.sqrt(2048));
 		System.out.println(Calculate.sqrt(100));
 
 

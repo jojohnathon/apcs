@@ -160,7 +160,7 @@ public class Calculate {
 	 public static double sqrt(double n) {
 		double initialGuess = 10;
 		double answer = 0;;
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 10; i++) {
 			answer = initialGuess - ((initialGuess * initialGuess) - n) / (2 * initialGuess);
 			initialGuess = answer;
 		}
