@@ -152,11 +152,13 @@ public class Calculate {
 
 		return true;
 	 }
+	 //TODO finish gcf
 /*
 	 public static int gcf(int a, int b) {
 		
 	 }
 */
+//TODO guess and check
 	 public static double sqrt(double n) {
 		double initialGuess = 10;
 		double answer = 0;;
