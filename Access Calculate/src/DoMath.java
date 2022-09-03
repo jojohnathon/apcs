@@ -82,7 +82,7 @@ public class DoMath {
 		//isPrime
 		System.out.println("IsPrime: ");
 		System.out.println(Calculate.isPrime(11));
-		System.out.println(Calculate.isPrime(10));
+		System.out.println(Calculate.isPrime(0));
 
 
 	}

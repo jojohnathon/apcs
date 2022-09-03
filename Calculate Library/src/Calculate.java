@@ -126,7 +126,7 @@ public class Calculate {
 	 
 	 public static double exponent(double base, int power) {
 		 double answer = base;
-		 if (power == 0) return 0;
+		 if (power == 0) return 1;
 		 for (int i = 1; i < power; i++) {
 			 answer = answer * base;
 		 }
@@ -144,7 +144,13 @@ public class Calculate {
 	 }
 	 
 	 public static boolean isPrime(int n) {
-		return true;	
+		for (int i = 2; i < n; i++) {
+			if(isDivivsibleBy(n, i)) {
+				return false;
+			}
+		}
+
+		return true;
 	 }
 	 
 }
