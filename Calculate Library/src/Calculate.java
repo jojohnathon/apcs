@@ -144,15 +144,7 @@ public class Calculate {
 	 }
 	 
 	 public static boolean isPrime(int n) {
-		for (int i = n; i > 0; i++) {
-			if (isDivivsibleBy(n, i) && isDivivsibleBy(n, 1) && isDivivsibleBy(n, n)) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-		
-		
+		return true;	
 	 }
 	 
 }
