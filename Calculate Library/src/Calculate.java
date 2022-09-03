@@ -121,7 +121,38 @@ public class Calculate {
 		 }
 		 
 		 
+		 
 	 }
 	 
+	 public static double exponent(double base, int power) {
+		 double answer = base;
+		 if (power == 0) return 0;
+		 for (int i = 1; i < power; i++) {
+			 answer = answer * base;
+		 }
+		 
+		 return answer;
+	 }
+
+	 public static int factorial(int n) {
+		int answer = n;
+		for (int i  = n - 1; i > 0; i--) {
+			answer = answer * i;
+		}
+		return answer;
+		
+	 }
+	 
+	 public static boolean isPrime(int n) {
+		for (int i = n; i > 0; i++) {
+			if (isDivivsibleBy(n, i) && isDivivsibleBy(n, 1) && isDivivsibleBy(n, n)) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+		
+	 }
 	 
 }

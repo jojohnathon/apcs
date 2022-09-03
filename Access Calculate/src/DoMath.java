@@ -71,6 +71,20 @@ public class DoMath {
 		System.out.println("round2");
 		System.out.println(Calculate.round2(3.14159));
 		System.out.println(Calculate.round2(-2.718));
+		//exponent
+		System.out.println("exponent ");
+		System.out.println(Calculate.exponent(-5.5, 2));
+		System.out.println(Calculate.exponent(1.2, 10));
+		//factorial
+		System.out.println("factorial ");
+		System.out.println(Calculate.factorial(5));
+		System.out.println(Calculate.factorial(10));
+		//isPrime
+		System.out.println("IsPrime: ");
+		System.out.println(Calculate.isPrime(11));
+		System.out.println(Calculate.isPrime(10));
+
+
 	}
 
 }
