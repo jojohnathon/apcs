@@ -152,12 +152,47 @@ public class Calculate {
 
 		return true;
 	 }
-	 //TODO finish gcf
-/*
-	 public static int gcf(int a, int b) {
-		
+	 
+	 public static int gcf(int a, int b) { //TODO refactor this bruh
+		int factorA = 0;
+		int factorB = 0;
+
+		if (min(a, b) == a) {
+			for (int i = 1; i <= a; i ++) {
+				if (isDivivsibleBy(a, i) && isPrime(i)) { //store the greatest factor of a
+					factorA = i;  
+				}
+			}
+
+			for (int i = 1; i <= b; i++) {
+				if (isDivivsibleBy(b, i) && isPrime(i)) {
+					factorB = i;
+				}
+			}
+
+			return factorB * factorA;
+
+		} else { // if b is smaller
+
+			for (int i = 1; i <= b; i ++) {
+				if (isDivivsibleBy(b, i)) { //store the greatest factor of b
+					factorB = i;  
+				}
+			}
+
+			for (int i = 1; i <= a; i++) {
+				if (isDivivsibleBy(a, i)) {
+					factorA = i;
+					if (factorB == factorA) {
+						return factorA;
+					}
+					
+				}
+			}
+		}
+		return -1; //how
 	 }
-*/
+
 //TODO guess and check
 	 public static double sqrt(double n) {
 		double initialGuess = 10;

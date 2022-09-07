@@ -83,7 +83,13 @@ public class DoMath {
 		System.out.println("IsPrime: ");
 		System.out.println(Calculate.isPrime(11));
 		System.out.println(Calculate.isPrime(0));
-		
+		//gcf
+		System.out.println("GCF: ");
+		System.out.println(Calculate.gcf(10, 30));
+		System.out.println(Calculate.gcf(24, 12));
+		System.out.println(Calculate.gcf(24, 18));
+
+
 		//sqrt
 		System.out.println("Square root: ");
 		System.out.println(Calculate.sqrt(4));
