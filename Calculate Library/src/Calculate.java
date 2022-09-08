@@ -195,9 +195,13 @@ public class Calculate {
 
 //TODO guess and check
 	 public static double sqrt(double n) {
-		double initialGuess = 10;
-		double answer = 0;;
-		for (int i = 0; i < 10; i++) {
+		double initialGuess = n / 2;
+		double answer;
+
+		answer = initialGuess - ((initialGuess * initialGuess) - n) / (2 * initialGuess);
+		initialGuess = answer;
+
+		while (absValue(answer * answer - n) >= 0.05) {
 			answer = initialGuess - ((initialGuess * initialGuess) - n) / (2 * initialGuess);
 			initialGuess = answer;
 		}
