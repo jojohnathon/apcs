@@ -181,5 +181,4 @@ public class Calculate {
 			return "no real roots";
 		}
 	 }
-	 
 }
