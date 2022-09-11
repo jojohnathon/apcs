@@ -1,4 +1,6 @@
- /*
+import javax.swing.Spring;
+
+/*
  * @author Johnathon Zheng
  * @version August 26, 2022
  * Library of math methods
@@ -175,6 +177,16 @@ public class Calculate {
 		}
 		return round2(answer);
 
+	 }
+
+	 public static String quadForm(int a, int b, int c) {
+		if (b * b - 4 * a * c > 0) { //two solutions
+
+		} else if (b * b - 4 * a * c < 0) { //one solution
+			
+		} else { // no real solutions
+			return "no real roots";
+		}
 	 }
 	 
 }
