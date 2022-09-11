@@ -64,57 +64,52 @@ public class Calculate {
 		 answer = (a * c + n + "^2") + "+" + ((a * d) + (b * c))  + n + "+" + (b * d);
 		 return answer;
 	 }
-	 
+	 //checks if a number is divisbile by another number
 	 public static boolean isDivivsibleBy(int a, int b) {
 		if (b == 0) throw new IllegalArgumentException("The second argument cannot be 0");
 		 boolean answer = false;
 		 if (a % b == 0) {
 			 answer = true;
-		 }
-		 return answer;
+		 } return answer;
 	 }
-	 
+	 //finds absolute value of a number
 	 public static double absValue(double a) {
 		 double answer = a;
 		 if (a < 0) {
 			 answer /= -1;
-		 }
-		 return answer;
+		 } return answer;
 	 }
-	 
+	 //finds the larger of two numbers
 	 public static double max(double a, double b) {
 		 double answer = a;
 		 if (a < b) {
 			 answer = b;
-		 }
-		 return answer;
+		 } return answer;
 	 }
-	 
+	 //finds the larger of three numbers
 	 public static double max(double a, double b, double c) {
 		 double answer = a;
 		 if (b >= a && b >= c) {
 			answer = b;
 		 } else if (c >= a && c >= a) {
 			answer = c;
-		 }
-		 return answer;
+		 } return answer;
 	}
-	 
+	 //find the smallest of two numbers
 	 public static int min(int a, int b) {
 		 int answer = a;
 		 if (a > b) {
 			 answer = b;
-		 }
-		 return answer;
+		 } return answer;
 	 }
-
+	 //rubric doesn't allow min to return double so i made another
 	 public static double myAwesomeMin(double a, double b) {
 		double answer = a;
 		if (a > b) {
 			answer = b;
 		} return answer;
 	 }
-	 
+	 //rounds a number to 2 decimal places
 	 public static double round2(double a) {
 		 if (a > 0) {
 			 double answer = (a * 100) + 0.5; //convert to int
@@ -127,42 +122,33 @@ public class Calculate {
 			 double answer2 = (double)answer1/100; //convert back to double
 			 return answer2;
 		 }
-		 
-		 
-		 
 	 }
-	 
+	 //raises a number to a positive integer power
 	 public static double exponent(double base, int power) {
 		if (power <= 0) throw new IllegalArgumentException("Please enter a power greater than 0");
 		 double answer = base;
 		 if (power == 0) return 1;
 		 for (int i = 1; i < power; i++) {
 			 answer = answer * base;
-		 }
-		 
-		 return answer;
+		 } return answer;
 	 }
-
+	 //calculates the factorial of a positive integer
 	 public static int factorial(int n) {
 		if (n < 0) throw new IllegalArgumentException("Please enter a positive number");
 		int answer = n;
 		for (int i  = n - 1; i > 0; i--) {
 			answer = answer * i;
-		}
-		return answer;
-		
+		} return answer;
 	 }
-	 
+	 //checks if a number is a prime number or not
 	 public static boolean isPrime(int n) {
 		for (int i = 2; i < n; i++) {
 			if(isDivivsibleBy(n, i)) {
 				return false;
 			}
-		}
-
-		return true;
+		} return true;
 	 }
-	 
+	 //finds the greatest common divisor of two numbers
 	 public static int gcf(int a, int b) { 
 		int answer = 1;
 		for (int i = 1; i <= a || i <= b; i++) {
@@ -171,23 +157,18 @@ public class Calculate {
 			} 
 		} return answer;
 	 }
-
+	 //approximates the square root of a double using newton's method
 	 public static double sqrt(double n) {
 		if (n < 0) throw new IllegalArgumentException("Please enter a number greater than 0");
 		double initialGuess = n / 2;
 		double answer;
-
-		answer = initialGuess - ((initialGuess * initialGuess) - n) / (2 * initialGuess);
-		initialGuess = answer;
-
-		while (absValue(answer * answer - n) >= 0.05) {
+		do {
 			answer = initialGuess - ((initialGuess * initialGuess) - n) / (2 * initialGuess);
 			initialGuess = answer;
-		}
+		} while (absValue(answer * answer - n) >= 0.05);
 		return round2(answer);
-
 	 }
-
+	 //finds the roots of quadratic using the quadratic formula
 	 public static String quadForm(int a, int b, int c) {
 		if (discriminant(a, b, c) > 0) { //two solutions
 			double solutionOne = ((-1 * b) + (sqrt(discriminant(a, b, c)))) / (2 * a);
