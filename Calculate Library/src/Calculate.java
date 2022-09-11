@@ -68,6 +68,7 @@ public class Calculate {
 	 }
 	 
 	 public static boolean isDivivsibleBy(int a, int b) {
+		if (b == 0) throw new IllegalArgumentException("The second argument cannot be 0");
 		 boolean answer = false;
 		 if (a % b == 0) {
 			 answer = true;
@@ -108,6 +109,13 @@ public class Calculate {
 		 }
 		 return answer;
 	 }
+
+	 public static double myAwesomeMin(double a, double b) {
+		double answer = a;
+		if (a > b) {
+			answer = b;
+		} return answer;
+	 }
 	 
 	 public static double round2(double a) {
 		 if (a > 0) {
@@ -127,6 +135,7 @@ public class Calculate {
 	 }
 	 
 	 public static double exponent(double base, int power) {
+		if (power <= 0) throw new IllegalArgumentException("Please enter a power greater than 0");
 		 double answer = base;
 		 if (power == 0) return 1;
 		 for (int i = 1; i < power; i++) {
@@ -137,6 +146,7 @@ public class Calculate {
 	 }
 
 	 public static int factorial(int n) {
+		if (n < 0) throw new IllegalArgumentException("Please enter a positive number");
 		int answer = n;
 		for (int i  = n - 1; i > 0; i--) {
 			answer = answer * i;
@@ -165,6 +175,7 @@ public class Calculate {
 	 }
 
 	 public static double sqrt(double n) {
+		if (n < 0) throw new IllegalArgumentException("Please enter a number greater than 0");
 		double initialGuess = n / 2;
 		double answer;
 
@@ -180,10 +191,13 @@ public class Calculate {
 	 }
 
 	 public static String quadForm(int a, int b, int c) {
-		if (b * b - 4 * a * c > 0) { //two solutions
-
-		} else if (b * b - 4 * a * c < 0) { //one solution
-			
+		if (discriminant(a, b, c) > 0) { //two solutions
+			double solutionOne = ((-1 * b) + (sqrt(discriminant(a, b, c)))) / (2 * a);
+			double solutionTwo = ((-1 * b) - (sqrt(discriminant(a, b, c)))) / (2 * a);
+			return round2(myAwesomeMin(solutionOne, solutionTwo)) + " and " + round2(max(solutionTwo, solutionOne));
+		} else if (discriminant(a, b, c) == 0) { //one solution
+			double solutionOne = ((-1 * b) + (sqrt(discriminant(a, b, c)))) / (2 * a);
+			return round2(solutionOne) + "";
 		} else { // no real solutions
 			return "no real roots";
 		}

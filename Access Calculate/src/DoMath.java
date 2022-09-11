@@ -100,7 +100,11 @@ public class DoMath {
 		System.out.println(Calculate.sqrt(1024));
 		System.out.println(Calculate.sqrt(5096));
 		System.out.println(Calculate.sqrt(100));
-
+		//quadform
+		System.out.println("quadForm: ");
+		System.out.println(Calculate.quadForm(2, 1, 3));
+		System.out.println(Calculate.quadForm(4, -12, 9));
+		System.out.println(Calculate.quadForm(2, -3, -2));
 
 	}
 
