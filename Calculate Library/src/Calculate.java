@@ -165,7 +165,7 @@ public class Calculate {
 		do {
 			answer = initialGuess - ((initialGuess * initialGuess) - n) / (2 * initialGuess);
 			initialGuess = answer;
-		} while (absValue(answer * answer - n) >= 0.05);
+		} while (absValue(answer * answer - n) >= 0.005);
 		return round2(answer);
 	 }
 	 //finds the roots of quadratic using the quadratic formula
