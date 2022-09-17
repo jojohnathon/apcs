@@ -67,8 +67,8 @@ public class Calculate {
 	 //checks if a number is divisbile by another number
 	 public static boolean isDivisibleBy(int num1, int num2) {
 		if (num2 == 0) throw new IllegalArgumentException("The second argument cannot be 0");
-		 boolean answer = false;
-		 if (num1 % num2 == 0) {
+		boolean answer = false;
+		if (num1 % num2 == 0) {
 			 answer = true;
 		 } return answer;
 	 }
