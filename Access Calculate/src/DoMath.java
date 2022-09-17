@@ -48,9 +48,9 @@ public class DoMath {
 		System.out.println(Calculate.foil(1, 1, 1, -1, "x"));
 		//divisble by
 		System.out.println("isDivisibleBy: ");
-		System.out.println(Calculate.isDivivsibleBy(-2, 2));
-		System.out.println(Calculate.isDivivsibleBy(1, 3));
-		System.out.println(Calculate.isDivivsibleBy(0, 100));
+		System.out.println(Calculate.isDivisibleBy(-2, 2));
+		System.out.println(Calculate.isDivisibleBy(1, 3));
+		System.out.println(Calculate.isDivisibleBy(0, 100));
 		//abs value
 		System.out.println("absolute value:");
 		System.out.println(Calculate.absValue(-20));

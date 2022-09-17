@@ -65,7 +65,7 @@ public class Calculate {
 		 return answer;
 	 }
 	 //checks if a number is divisbile by another number
-	 public static boolean isDivivsibleBy(int num1, int num2) {
+	 public static boolean isDivisibleBy(int num1, int num2) {
 		if (num2 == 0) throw new IllegalArgumentException("The second argument cannot be 0");
 		 boolean answer = false;
 		 if (num1 % num2 == 0) {
@@ -143,7 +143,7 @@ public class Calculate {
 	 //checks if a number is a prime number or not
 	 public static boolean isPrime(int n) {
 		for (int i = 2; i < n; i++) {
-			if(isDivivsibleBy(n, i)) {
+			if(isDivisibleBy(n, i)) {
 				return false;
 			}
 		} return true;
@@ -152,7 +152,7 @@ public class Calculate {
 	 public static int gcf(int num1, int num2) { 
 		int answer = 1;
 		for (int i = 1; i <= num1 || i <= num2; i++) {
-			if (isDivivsibleBy(num1, i) && isDivivsibleBy(num2, i)) {
+			if (isDivisibleBy(num1, i) && isDivisibleBy(num2, i)) {
 				answer = i;
 			} 
 		} return answer;
