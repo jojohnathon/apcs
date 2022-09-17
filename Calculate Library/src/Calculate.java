@@ -17,15 +17,15 @@ public class Calculate {
 		return answer;
 	}
 	//returns the average of two numbers
-	public static double average(double a, double b) {
+	public static double average(double num1, double num2) {
 		double answer = 0.0;
-		answer = (a + b) / 2;
+		answer = (num1 + num2) / 2;
 		return answer;
 	}
 	//returns the average of three numbers
-	public static double average(double a, double b, double c) {
+	public static double average(double num1, double num2, double num3) {
 		double answer = 0.0;
-		answer = (a + b + c) / 3;
+		answer = (num1 + num2 + num3) / 3;
 		return answer;
 	}
 	//converts radians to degrees
@@ -47,15 +47,15 @@ public class Calculate {
 		return answer;
 	}
 	//converts a mixed number to an improper fraction
-	 public static String toImproperFrac(int a, int b, int c) {
+	 public static String toImproperFrac(int wholeNum, int numerator, int denominator) {
 		int answer = 0;
-		answer = (a * c) + b;
-		return answer + "/" + c;
+		answer = (wholeNum * denominator) + numerator;
+		return answer + "/" + denominator;
 	 }
 	 //converts an improper fraction to a mixed number
-	 public static String toMixedNum(int a, int b) {
+	 public static String toMixedNum(int numerator, int denominator) {
 		 String answer = "0";
-		 answer = a / b + "_" + a % b + "/" + String.valueOf(b);
+		 answer = numerator / denominator + "_" + numerator % denominator + "/" + String.valueOf(denominator);
 		 return answer;
 	 }
 	 //does foil method
@@ -65,59 +65,59 @@ public class Calculate {
 		 return answer;
 	 }
 	 //checks if a number is divisbile by another number
-	 public static boolean isDivivsibleBy(int a, int b) {
-		if (b == 0) throw new IllegalArgumentException("The second argument cannot be 0");
+	 public static boolean isDivivsibleBy(int num1, int num2) {
+		if (num2 == 0) throw new IllegalArgumentException("The second argument cannot be 0");
 		 boolean answer = false;
-		 if (a % b == 0) {
+		 if (num1 % num2 == 0) {
 			 answer = true;
 		 } return answer;
 	 }
 	 //finds absolute value of a number
-	 public static double absValue(double a) {
-		 double answer = a;
-		 if (a < 0) {
+	 public static double absValue(double num) {
+		 double answer = num;
+		 if (num < 0) {
 			 answer /= -1;
 		 } return answer;
 	 }
 	 //finds the larger of two numbers
-	 public static double max(double a, double b) {
-		 double answer = a;
-		 if (a < b) {
-			 answer = b;
+	 public static double max(double num1, double num2) {
+		 double answer = num1;
+		 if (num1 < num2) {
+			 answer = num2;
 		 } return answer;
 	 }
 	 //finds the larger of three numbers
-	 public static double max(double a, double b, double c) {
-		 double answer = a;
-		 if (b >= a && b >= c) {
-			answer = b;
-		 } else if (c >= a && c >= a) {
-			answer = c;
+	 public static double max(double num1, double num2, double num3) {
+		 double answer = num1;
+		 if (num2 >= num1 && num2 >= num3) {
+			answer = num2;
+		 } else if (num3 >= num1 && num3 >= num1) {
+			answer = num3;
 		 } return answer;
 	}
 	 //find the smallest of two numbers
-	 public static int min(int a, int b) {
-		 int answer = a;
-		 if (a > b) {
-			 answer = b;
+	 public static int min(int num1, int num2) {
+		 int answer = num1;
+		 if (num1 > num2) {
+			 answer = num2;
 		 } return answer;
 	 }
 	 //rubric doesn't allow min to return double so i made another
-	 public static double myAwesomeMin(double a, double b) {
-		double answer = a;
-		if (a > b) {
-			answer = b;
+	 public static double minDouble(double num1, double num2) {
+		double answer = num1;
+		if (num1 > num2) {
+			answer = num2;
 		} return answer;
 	 }
 	 //rounds a number to 2 decimal places
-	 public static double round2(double a) {
-		 if (a > 0) {
-			 double answer = (a * 100) + 0.5; //convert to int
+	 public static double round2(double num) {
+		 if (num > 0) {
+			 double answer = (num * 100) + 0.5; //convert to int
 			 int answer1 = (int)answer; //truncate 
 			 double answer2 = (double)answer1/100; //convert back to double
 			 return answer2;
 		 } else {
-			 double answer = (a * 100) - 0.5; //convert to int
+			 double answer = (num * 100) - 0.5; //convert to int
 			 int answer1 = (int)answer; //truncate 
 			 double answer2 = (double)answer1/100; //convert back to double
 			 return answer2;
@@ -149,10 +149,10 @@ public class Calculate {
 		} return true;
 	 }
 	 //finds the greatest common divisor of two numbers
-	 public static int gcf(int a, int b) { 
+	 public static int gcf(int num1, int num2) { 
 		int answer = 1;
-		for (int i = 1; i <= a || i <= b; i++) {
-			if (isDivivsibleBy(a, i) && isDivivsibleBy(b, i)) {
+		for (int i = 1; i <= num1 || i <= num2; i++) {
+			if (isDivivsibleBy(num1, i) && isDivivsibleBy(num2, i)) {
 				answer = i;
 			} 
 		} return answer;
@@ -168,12 +168,12 @@ public class Calculate {
 		} while (absValue(answer * answer - n) >= 0.005);
 		return round2(answer);
 	 }
-	 //finds the roots of quadratic using the quadratic formula
+	 //finds the roots of a quadratic using the quadratic formula
 	 public static String quadForm(int a, int b, int c) {
 		if (discriminant(a, b, c) > 0) { //two solutions
 			double solutionOne = ((-1 * b) + (sqrt(discriminant(a, b, c)))) / (2 * a);
 			double solutionTwo = ((-1 * b) - (sqrt(discriminant(a, b, c)))) / (2 * a);
-			return round2(myAwesomeMin(solutionOne, solutionTwo)) + " and " + round2(max(solutionTwo, solutionOne));
+			return round2(minDouble(solutionOne, solutionTwo)) + " and " + round2(max(solutionTwo, solutionOne));
 		} else if (discriminant(a, b, c) == 0) { //one solution
 			double solutionOne = ((-1 * b) + (sqrt(discriminant(a, b, c)))) / (2 * a);
 			return round2(solutionOne) + "";
