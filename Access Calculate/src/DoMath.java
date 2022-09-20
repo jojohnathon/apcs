@@ -90,7 +90,7 @@ public class DoMath {
 		System.out.println(Calculate.gcf(24, 18));
 		System.out.println(Calculate.gcf(24, 30));
 		System.out.println(Calculate.gcf(15, 36));
-		System.out.println(Calculate.gcf(42, 0));
+		System.out.println(Calculate.gcf(13, 33));
 		
 		//sqrt
 		System.out.println("Square root: ");
