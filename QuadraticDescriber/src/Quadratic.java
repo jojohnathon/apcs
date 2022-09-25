@@ -3,25 +3,31 @@
  * @version September 23, 2022
  * methods required to analyze a quadratic function 
  */
-import java.util.*;
 
 public class Quadratic {
-    public static void quadrDescriber (double a, double b, double c) {
+    public static String quadrDescriber (double a, double b, double c) {
         System.out.println("Description of the graph of: ");
-        System.out.println("y = " + a + "x^2" + " + " + b + "x" + " + " + c);
-
+        System.out.println("y = " + a + " x^2" + " + " + b + " x" + " + " + c + "\n");
+        //determine if the function opens down or up
         if (a > 0.0) {
             System.out.println("Opens: Up");
         } else {
             System.out.println("Opens: Down");
         }
-        System.out.print("Axis of Symmetry: ");
-        System.out.println("Vertex: ");
-        System.out.println("x-intercept(s): ");
-        System.out.println("y-intercept: ");
+        //determine the aos and vertex
+        double x = (-1 * b) / (2 * a);
+        double y = round2(((a * (x * x)) + (b * x)) + c);
+        System.out.println("Axis of Symmetry: " + x);
+        System.out.println("Vertex: (" + round2(x) + ", " + y + ")" );
+        //call quadform to find the roots 
+        System.out.println("x-intercept(s): " + quadForm(a, b, c));
+        //print y-int
+        System.out.println("y-intercept: " + c + "\n");
+
+        return ""; //says so on rubric
     }
 
-    public static String quadForm(int a, int b, int c) {
+    public static String quadForm(double a, double b, double c) {
         if (discriminant(a, b, c) > 0) { //two solutions
             double solutionOne = ((-1 * b) + (sqrt(discriminant(a, b, c)))) / (2 * a);
             double solutionTwo = ((-1 * b) - (sqrt(discriminant(a, b, c)))) / (2 * a);
@@ -30,11 +36,11 @@ public class Quadratic {
             double solutionOne = ((-1 * b) + (sqrt(discriminant(a, b, c)))) / (2 * a);
             return round2(solutionOne) + "";
         } else { // no real solutions
-            return "no real roots";
+            return "None";
         }
      }
 
-     public static double discriminant(double a, double b, double c) {
+    public static double discriminant(double a, double b, double c) {
 		double answer = 0;
 		answer = (b*b) - (4 * a * c);
 		return answer;
@@ -49,7 +55,7 @@ public class Quadratic {
 			initialGuess = answer;
 		} while (absValue(answer * answer - n) >= 0.005);
 		return round2(answer);
-	 }
+	}
 
      public static double round2(double num) {
         if (num > 0) {
@@ -77,7 +83,7 @@ public class Quadratic {
 		if (num1 > num2) {
 			answer = num2;
 		} return answer;
-	 }
+	}
 
      public static double max(double num1, double num2) {
         double answer = num1;
