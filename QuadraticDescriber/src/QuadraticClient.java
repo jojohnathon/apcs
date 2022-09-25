@@ -38,5 +38,6 @@ public class QuadraticClient {
 				String keepGoing = sc.next();
 				}
 			}
+			sc.close();
 		}
 	}
