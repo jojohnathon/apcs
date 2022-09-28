@@ -36,17 +36,17 @@ public class Guessing {
 		while(run) {
 			try {
 				
-				System.out.println("Pick the lowest number: ");
+				System.out.println("\nPick the lowest number: ");
 				String input = sc.nextLine();
 				int lowest = Integer.parseInt(input);
-				System.out.println("Pick the highest number: ");
+				System.out.println("\nPick the highest number: ");
 				input = sc.nextLine();
 				int highest = Integer.parseInt(input); //TODO check input
 				if (highest < lowest) throw new IllegalArgumentException("Invalid range");
 				int secret = getRandomNumber(lowest, highest);
 				boolean johnathon = true;
 				while(johnathon) {
-					System.out.println("Pick a number between " + lowest + " and " + highest);
+					System.out.println("\nPick a number between " + lowest + " and " + highest);
 					input = sc.nextLine();
 					int guess = Integer.parseInt(input);
 					if (secret == guess && inRange(lowest, highest, guess)) {
@@ -55,7 +55,7 @@ public class Guessing {
 						johnathon = false;
 					} else {
 						String lowHigh = compareToSecret(guess, secret);
-						System.out.println("Nope! " + guess + " is too " + lowHigh);
+						System.out.println("\nNope! " + guess + " is too " + lowHigh);
 						System.out.println("Guess again!");
 					}
 				}
