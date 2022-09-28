@@ -61,7 +61,7 @@ public class Calculate {
 	 //does foil method
 	 public static String foil(int a, int b, int c, int d, String n) {
 		 String answer;
-		 answer = (a * c + n + "^2") + "+" + ((a * d) + (b * c))  + n + "+" + (b * d);
+		 answer = (a * c + n + "^2") + " + " + ((a * d) + (b * c))  + n + " + " + (b * d);
 		 return answer;
 	 }
 	 //checks if a number is divisbile by another number
@@ -125,7 +125,7 @@ public class Calculate {
 	 }
 	 //raises a number to a positive integer power
 	 public static double exponent(double base, int power) {
-		if (power <= 0) throw new IllegalArgumentException("Please enter a power greater than 0");
+		if (power < 0) throw new IllegalArgumentException("Please enter a power greater than 0");
 		 double answer = base;
 		 if (power == 0) return 1;
 		 for (int i = 1; i < power; i++) {

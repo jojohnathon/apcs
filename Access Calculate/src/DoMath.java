@@ -106,6 +106,9 @@ public class DoMath {
 		System.out.println(Calculate.quadForm(4, -12, 9));
 		System.out.println(Calculate.quadForm(2, -3, -2));
 
+
+		System.out.println("exponent");
+		System.out.println(Calculate.exponent(0, 5));
 	}
 
 }
