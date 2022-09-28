@@ -30,34 +30,52 @@ public class Guessing {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		boolean run = true;
-		System.out.println("What is your name?")
+		System.out.println("What is your name?");
 		String name = sc.nextLine();
 		System.out.println("Hello " + name + ".");
 		while(run) {
-			System.out.println("Pick the lowest number: ");
-			int lowest = sc.nextInt();
-			System.out.println("Pick the highest number: ");
-			int highest = sc.nextInt(); //TODO check input
-			System.out.println("Pick a number between " + lowest + " and " + highest);
-			int guess = sc.nextInt();
-
-			int secret = getRandomNumber(lowest, highest);
-			boolean johanthon = true;
-			while(johnathon) {
-				if (secret == guess) {
-					System.out.println("You guessed right!");
-					System.out.println("My number was " + secret + "!");
-					johnathon = false;
-				} else {
-					String lowHigh = compareToSecret(guess, secret);
-					System.out.println("Nope " + guess + "is too " + lowHigh);
-					System.out.println("Guess again!");
+			try {
+				
+				System.out.println("Pick the lowest number: ");
+				String input = sc.nextLine();
+				int lowest = Integer.parseInt(input);
+				System.out.println("Pick the highest number: ");
+				input = sc.nextLine();
+				int highest = Integer.parseInt(input); //TODO check input
+				if (highest < lowest) throw new IllegalArgumentException("Invalid range");
+				int secret = getRandomNumber(lowest, highest);
+				boolean johnathon = true;
+				while(johnathon) {
+					System.out.println("Pick a number between " + lowest + " and " + highest);
+					input = sc.nextLine();
+					int guess = Integer.parseInt(input);
+					if (secret == guess && inRange(lowest, highest, guess)) {
+						System.out.println("You guessed right!");
+						System.out.println("My number was " + secret + "!");
+						johnathon = false;
+					} else {
+						String lowHigh = compareToSecret(guess, secret);
+						System.out.println("Nope! " + guess + " is too " + lowHigh);
+						System.out.println("Guess again!");
+					}
 				}
+	
+				System.out.println("Play again? type \"quit\" to exit.");
+				input = sc.nextLine();
+				String keepGoing = input.toLowerCase();
+				if (keepGoing.charAt(0) == 'q' || keepGoing.charAt(0) == 'n') {
+					run = false;
+				}
+			} catch (Exception e) {
+				System.out.println("Error:  " + e.getMessage() + ". Do you want to keep going?  (Type \"quit\" to end)");
+				String keepGoing = sc.nextLine().toLowerCase();
+				if (keepGoing.charAt(0) == 'q' || keepGoing.charAt(0) == 'n') {
+					run = false; 
+				}
+				System.out.println();
 			}
 
-			System.out.println("Play again?");
-			String keepGoing = sc.next();
-			
+		
 		}
 	}
 
