@@ -41,7 +41,7 @@ public class Guessing {
 				int lowest = Integer.parseInt(input);
 				System.out.println("\nPick the highest number: ");
 				input = sc.nextLine();
-				int highest = Integer.parseInt(input); //TODO check input
+				int highest = Integer.parseInt(input);
 				if (highest < lowest) throw new IllegalArgumentException("Invalid range");
 				int secret = getRandomNumber(lowest, highest);
 				boolean johnathon = true;
@@ -54,6 +54,8 @@ public class Guessing {
 						System.out.println("My number was " + secret + "!");
 						johnathon = false;
 					} else {
+						if (guess < lowest) throw new IllegalArgumentException("Invalid guess");
+						if (guess > highest) throw new IllegalArgumentException("Invalid guess");
 						String lowHigh = compareToSecret(guess, secret);
 						System.out.println("\nNope! " + guess + " is too " + lowHigh);
 						System.out.println("Guess again!");
