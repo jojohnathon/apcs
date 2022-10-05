@@ -125,7 +125,7 @@ public class Calculate {
 	 }
 	 //raises a number to a positive integer power
 	 public static double exponent(double base, int power) {
-		if (base == 0 || power == 0) throw new IllegalArgumentException("Cannot find the value of 0^0");
+		if (base == 0 && power == 0) throw new IllegalArgumentException("Cannot find the value of 0^0");
 		if (power < 0) throw new IllegalArgumentException("Please enter a power greater than 0");
 		 double answer = base;
 		 if (power == 0) return 1;
