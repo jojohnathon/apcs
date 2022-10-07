@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>QuadraticDescriber</name>
+	<name>Country Data Project</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -16,7 +16,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1665165696062</id>
+			<id>1665165695959</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
