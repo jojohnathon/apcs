@@ -15,13 +15,14 @@ public class CountryClient {
 		
 		String series = sc.nextLine();
 		System.out.println(series);
-
+		//TODO String input; 
+		// Integer.parseInt(string) 
 		int numYears = sc.nextInt();
 		for(int i = 0; i < numYears; i++) {
 			int year = sc.nextInt();
 			System.out.print(year + "	");
 		}
-		
+
 		String country = sc.next();
 		System.out.println();
 		for (int i = 0; i < numYears; i++) {
