@@ -11,7 +11,7 @@ public class CountryClient {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		
-		File inputFile = new File("Country Data Project\\src\\multipleCountry2.txt");
+		File inputFile = new File("C:\\Users\\pixel\\eclipse-workspace\\Country Data Project\\src\\multipleCountry3.txt");
 		Scanner sc = new Scanner(inputFile);
 		
 		String series = sc.nextLine();
@@ -51,7 +51,7 @@ public class CountryClient {
 			
 			System.out.println("\nThis is the \"" + series + "\" for " + country);
 			
-			//TODO min max
+			
 			System.out.println("Minimum: " + min);
 			System.out.println("Maximum: " + max);
 			System.out.println();
