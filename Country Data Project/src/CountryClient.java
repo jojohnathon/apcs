@@ -11,55 +11,87 @@ public class CountryClient {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		
-		File inputFile = new File("C:\\Users\\pixel\\eclipse-workspace\\Country Data Project\\src\\multipleCountry3.txt");
+		File inputFile = new File("Country Data Project\\src\\CountryDataSet - Sheet1.csv");
 		Scanner sc = new Scanner(inputFile);
 		
 		String series = sc.nextLine();
-		int numYears = sc.nextInt();
-		// System.out.println(series);
-		//TODO String input; 
-		// Integer.parseInt(string) 
+		String[] seriesArr = series.split(",");
+		series = seriesArr[0];
+	
+		String yearsRaw = sc.nextLine();
+		String[] yearsArr = yearsRaw.split(",");
+		int numYears = yearsArr.length - 1;
+		
+		int[] years = new int[numYears];
+		for (int i = 0; i < years.length; i++) {
+			years[i] += Integer.parseInt(yearsArr[i + 1]); 
+		}
+
+		// String dataRaw = sc.nextLine();
+		// String[] dataArr = dataRaw.split(",");
+		// double[] data = new double[numYears];
+		// for (int i = 0; i < dataArr.length - 1; i++) {
+		// 	data[i] = Double.parseDouble(dataArr[i + 1]);
+		// }
 
 
 		while (true) {
-			String country = sc.nextLine();
-			country = sc.nextLine();
-			if (country.equals("END")) {
-				break;
-			 }
+			
+
+			
+
 
 			for(int i = 0; i < numYears; i++) {
-				String year = sc.next();
-				System.out.print(year + "	");
-			}
-			double max = 0;
-			double min = 0;
-			System.out.println();
-			for (int i = 0; i < numYears; i++) {
-				double data = Math.round(sc.nextDouble() * 100.0) / 100.0;
-				System.out.print(data + "	");
-				if (i == 0) {
-					max = data;
-					min = data;
+				String dataRaw = sc.nextLine();
+				String[] dataArr = dataRaw.split(",");
+				double[] data = new double[numYears];
+				for (int j = 0; j < dataArr.length - 1; j++) {
+					data[j] = Double.parseDouble(dataArr[j + 1]);
 				}
-				if (data > max) {
-					max = data;
-				} else if (data < min) {
-					min = data;
-				}
-			}
-			
-			System.out.println("\nThis is the \"" + series + "\" for " + country);
-			
-			
-			System.out.println("Minimum: " + min);
-			System.out.println("Maximum: " + max);
-			System.out.println();
-			
 
+				System.out.println(summarizeCountry(dataArr[0], series, years, data) + "\n");
+			}
+
+			if (sc.hasNextLine()) {
+				break;
+			 }
 		}
-		
 		sc.close();
+	}
+
+	public static String summarizeCountry (String name, String series, int[] years, double[] values) {
+		String ans = "";
+		for (int i = 0; i < years.length; i++) {
+			ans += years[i] + "		";
+		}
+		ans += "\n";
+		for (int i = 0; i < values.length; i++) {
+			double valueRounded = Math.round(values[i] * 100.0) / 100.0; 
+			ans += valueRounded + "		"; 
+		}
+		ans += "\nThis is the \"" + series + "\" for " + name + "\nMinimum: " + min(values) + "\nMaximum: " + max(values);
+
+		return ans;			
+	}
+
+	public static double max (double[] arr) {
+		double max = arr[0];
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] > max) {
+				max = arr[i];
+			}
+		}
+		return Math.round(max * 100.0) / 100.0;
+	}
+
+	public static double min (double[] arr) {
+		double min = arr[0];
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] < min) {
+				min = arr[i];
+			}
+		}
+		return Math.round(min * 100.0) / 100.0;
 	}
 
 }
