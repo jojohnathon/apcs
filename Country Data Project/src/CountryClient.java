@@ -13,52 +13,34 @@ public class CountryClient {
 		
 		File inputFile = new File("Country Data Project\\src\\CountryDataSet - Sheet1.csv");
 		Scanner sc = new Scanner(inputFile);
-		
+		//get and put the series into an array
 		String series = sc.nextLine();
 		String[] seriesArr = series.split(",");
 		series = seriesArr[0];
-	
+		//get and format the years
 		String yearsRaw = sc.nextLine();
 		String[] yearsArr = yearsRaw.split(",");
 		int numYears = yearsArr.length - 1;
-		
+		//put the years into an array
 		int[] years = new int[numYears];
 		for (int i = 0; i < years.length; i++) {
 			years[i] += Integer.parseInt(yearsArr[i + 1]); 
 		}
-
-		// String dataRaw = sc.nextLine();
-		// String[] dataArr = dataRaw.split(",");
-		// double[] data = new double[numYears];
-		// for (int i = 0; i < dataArr.length - 1; i++) {
-		// 	data[i] = Double.parseDouble(dataArr[i + 1]);
-		// }
-
-
-		while (true) {
-			
-
-			
-
-
-			for(int i = 0; i < numYears; i++) {
-				String dataRaw = sc.nextLine();
-				String[] dataArr = dataRaw.split(",");
-				double[] data = new double[numYears];
-				for (int j = 0; j < dataArr.length - 1; j++) {
-					data[j] = Double.parseDouble(dataArr[j + 1]);
-				}
-
-				System.out.println(summarizeCountry(dataArr[0], series, years, data) + "\n");
+		//print out all the data
+		while(sc.hasNextLine()) { 
+			String dataRaw = sc.nextLine();
+			String[] dataArr = dataRaw.split(",");
+			double[] data = new double[numYears];
+			for (int j = 0; j < dataArr.length - 1; j++) {
+				data[j] = Double.parseDouble(dataArr[j + 1]);
 			}
 
-			if (sc.hasNextLine()) {
-				break;
-			 }
+			System.out.println(summarizeCountry(dataArr[0], series, years, data) + "\n");
 		}
-		sc.close();
-	}
 
+	sc.close();
+}
+	//method for formatting the data
 	public static String summarizeCountry (String name, String series, int[] years, double[] values) {
 		String ans = "";
 		for (int i = 0; i < years.length; i++) {
