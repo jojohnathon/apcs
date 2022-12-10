@@ -1,3 +1,5 @@
+import java.util.zip.CheckedInputStream;
+
 public class Country {
     String countryName = "";
     String series = "";
@@ -21,34 +23,57 @@ public class Country {
     }
 
     public String getTrend() {
+        if (trendsUp()) {
+            return "trends up";
+        } else if (trendsDown()) {
+            return "trends down";
+        }
         return "no trend";
     }
 
     private boolean trendsUp() {
+        for (int i = 0; i < data.length - 1; i++) {
+            if (data[i] < data[i + 1]) {
+                continue;
+            } else {
+                return false;
+            }
+        }
         return true;
     }
 
     private boolean trendsDown() {
+        for (int i = 1; i < data.length; i++) {
+            if (data[i] > data[i - 1]) {
+                continue;
+            } else {
+                return false;
+            }
+        }
         return true;
     }
 
     public String getAcronym() {
         //this method returns an acronym
-        // String ans[] = series.split(" ");
+        String input = series.substring(0, series.indexOf("(") - 1);
+        String ans[] = input.split(" ");
         String excluded[] = {"of", "in", "the", "at", "to", "by", "per", "on", "a", "an"};
-        String line = "";
-        for (int i = 0; i < excluded.length; i++) {
-            
+        String output = "";
+        //look for excluded words
+        //assemble string
+        for (int i = 0; i < ans.length; i++) {
+            String test = ans[i];
+            for (int j = 0; i < excluded.length; i++) {
+                if (test.equals(excluded[i])) {
+                    break;
+                } else {
+                    output += test;
+                    break;
+                }
+            }
         }
-        // for (int i = 0; i < ans.length; i++) {
-        //     String test = ans[i];
-        //     for (int j = 0; j < excluded.length; j++) {
-        //         if !(test.equals(excluded[j])){
-
-        //         }
-        //     }
-        // }
-        return "";
+        
+        return output.toUpperCase();
     }
 
     public double max (double[] arr) {

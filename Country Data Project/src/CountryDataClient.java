@@ -11,7 +11,7 @@ public class CountryDataClient {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		
-		File inputFile = new File("C:\\Users\\pixel\\eclipse-workspace\\Country Data Project\\src\\CountryDataSet - Sheet1.csv");
+		File inputFile = new File("Country Data Project\\src\\CountryDataSet - Sheet1.csv");
 		Scanner sc = new Scanner(inputFile);
 		//get and put the series into an array
 		String series = sc.nextLine();
@@ -42,9 +42,15 @@ public class CountryDataClient {
 
 			Country country = new Country(dataArr[0], series, years, data);
 			System.out.println(country.toString() + "\n");
+			System.out.println("Trend: " + country.getTrend());
+
+			Country testCountry = new Country("test", "Access to electricity (% of population)", years, data);
+			System.out.println(testCountry.getAcronym());
 		}
 
 		sc.close();
+
+		
 	}
 	
 
