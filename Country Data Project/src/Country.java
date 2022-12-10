@@ -31,9 +31,23 @@ public class Country {
     private boolean trendsDown() {
         return true;
     }
-    
+
     public String getAcronym() {
         //this method returns an acronym
+        // String ans[] = series.split(" ");
+        String excluded[] = {"of", "in", "the", "at", "to", "by", "per", "on", "a", "an"};
+        String line = "";
+        for (int i = 0; i < excluded.length; i++) {
+            
+        }
+        // for (int i = 0; i < ans.length; i++) {
+        //     String test = ans[i];
+        //     for (int j = 0; j < excluded.length; j++) {
+        //         if !(test.equals(excluded[j])){
+
+        //         }
+        //     }
+        // }
         return "";
     }
 
