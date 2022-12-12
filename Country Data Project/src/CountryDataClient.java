@@ -41,11 +41,11 @@ public class CountryDataClient {
 			// System.out.println(summarizeCountry(dataArr[0], series, years, data) + "\n");
 
 			Country country = new Country(dataArr[0], series, years, data);
-			System.out.println(country.toString() + "\n");
-			System.out.println("Trend: " + country.getTrend());
+			System.out.println(country.toString() + "\n" + "Trend: " + country.getTrend() + "\n");
+			// System.out.println("Trend: " + country.getTrend());
 
-			Country testCountry = new Country("test", "Access to electricity (% of population)", years, data);
-			System.out.println(testCountry.getAcronym());
+			// Country testCountry = new Country("test", "Access to electricity (% of population)", years, data);
+			// System.out.println(testCountry.getAcronym());
 		}
 
 		sc.close();
