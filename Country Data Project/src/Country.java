@@ -1,5 +1,3 @@
-import java.util.zip.CheckedInputStream;
-
 public class Country {
     String countryName = "";
     String series = "";
@@ -15,6 +13,29 @@ public class Country {
         this.data = data;
     }
 
+    public String getCountry() {
+        return countryName;
+    }
+
+    public String getSeries() {
+        return series;
+    }
+
+    public int[] getYears() {
+        return years;
+    }
+
+    public double[] getData() {
+        return data;
+    }
+
+    public void setSeries(String newSeries) {
+        this.series = newSeries;
+    }
+
+    public void setData(double[] arr) {
+        this.data = arr;
+    }
     public String getUnits() {
         int start = series.indexOf("(");
         int end = series.indexOf(")");
@@ -25,33 +46,50 @@ public class Country {
     public String getTrend() {
         if (trendsUp()) {
             return "trends up";
-        } else if (trendsDown()) {
+        } 
+        if (trendsDown()) {
             return "trends down";
         }
         return "no trend";
     }
 
     private boolean trendsUp() {
+        double endValue = data[data.length - 1];
+        boolean trendsUp = false;
         for (int i = 0; i < data.length - 1; i++) {
-            if (data[i] < data[i + 1]) {
-                continue;
-            } else {
+            if (endValue > data[i]) {
+                trendsUp = true;
+            } else if (endValue < data[i]) {
                 return false;
             }
         }
-        return true;
+        return trendsUp;
     }
 
     private boolean trendsDown() {
-        for (int i = 1; i < data.length; i++) {
-            if (data[i] > data[i - 1]) {
-                continue;
-            } else {
+        double endValue = data[0];
+        boolean trendsDown = false;
+        for (int i = data.length - 2; i >= 0; i--) {
+            if (endValue < data[i]) {
+                trendsDown = true;
+            } else if (endValue > data[i]) {
                 return false;
             }
         }
-        return true;
+        return trendsDown;
     }
+    //remove something from an array
+    private String[] remove(String[] ans, int idx) { 
+		String[] answer = new String[ans.length - 1];
+		for (int i = 0; i < (ans.length - 1); i++) {
+			if (i < idx) {
+				answer[i] = ans[i];
+			} else if ( i >= idx) {
+				answer[i] = ans[i + 1];
+			} 
+		}
+		return answer;
+	}
 
     public String getAcronym() {
         //this method returns an acronym
@@ -60,19 +98,17 @@ public class Country {
         String excluded[] = {"of", "in", "the", "at", "to", "by", "per", "on", "a", "an"};
         String output = "";
         //look for excluded words
-        //assemble string
-        for (int i = 0; i < ans.length; i++) {
-            String test = ans[i];
-            for (int j = 0; i < excluded.length; i++) {
-                if (test.equals(excluded[i])) {
-                    break;
-                } else {
-                    output += test;
-                    break;
+        for (int i = 0; i < excluded.length; i++) {
+            for (int j = 0; j < ans.length; j++) {
+                if (ans[j].contains(excluded[i])) {
+                    ans = remove(ans, j); //call remove method
                 }
             }
         }
-        
+        //assemble string
+        for (int i = 0; i < ans.length; i++) {
+            output += ans[i].charAt(0);
+        }
         return output.toUpperCase();
     }
 

@@ -42,10 +42,11 @@ public class CountryDataClient {
 
 			Country country = new Country(dataArr[0], series, years, data);
 			System.out.println(country.toString() + "\n" + "Trend: " + country.getTrend() + "\n");
+			
 			// System.out.println("Trend: " + country.getTrend());
-
-			// Country testCountry = new Country("test", "Access to electricity (% of population)", years, data);
-			// System.out.println(testCountry.getAcronym());
+			
+			// Country testCountry = new Country("test", "Access to electricity (annual %)", years, data);
+			// System.out.println(testCountry.getTrend());
 		}
 
 		sc.close();
