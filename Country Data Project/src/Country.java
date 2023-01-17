@@ -18,7 +18,13 @@ public class Country {
     }
 
     public String getSeries() {
-        return series;
+        int index = 0;
+        for (int i = 0; i < series.length(); i++) {
+            if (series.charAt(i) == '(') {
+                index = i;
+            }
+        }
+        return series.substring(0, index);
     }
 
     public int[] getYears() {
@@ -39,6 +45,7 @@ public class Country {
     public String getUnits() {
         int start = series.indexOf("(");
         int end = series.indexOf(")");
+        if (start == -1) return "";
         String ans = series.substring(start + 1, end);
         return ans;
     }
@@ -85,8 +92,7 @@ public class Country {
 
     public String getAcronym() {
         //this method returns an acronym
-        String input = series.substring(0, series.indexOf("(") - 1);
-        String ans[] = input.split(" ");
+        String ans[] = getSeries().split(" ");
         String excluded[] = {"of", "in", "the", "at", "to", "by", "per", "on", "a", "an"};
         String output = "";
         //look for excluded words
@@ -111,7 +117,7 @@ public class Country {
                 max = data[i];
             }
         }
-        return Math.round(max * 100.0) / 100.0;
+        return max;
     }
 
     public double min () {
@@ -121,7 +127,7 @@ public class Country {
                 min = data[i];
             }
         }
-        return Math.round(min * 100.0) / 100.0;
+        return min;
     }
 
     public String toString() {
@@ -134,7 +140,7 @@ public class Country {
 			double valueRounded = Math.round(data[i] * 100.0) / 100.0; 
 			ans += valueRounded + "		"; 
 		}
-		ans += "\nThis is the \"" + series + "\" for " + countryName + "\nMinimum: " + min() + "\nMaximum: " + max();
+		ans += "\nThis is the \"" + series + "\" for " + countryName + "\nMinimum: " + Math.round(min() * 100.0) / 100.0  + "\nMaximum: " + Math.round(max() * 100.0) / 100.0;
 
 		return ans;	
     }
