@@ -104,21 +104,21 @@ public class Country {
         return output.toUpperCase();
     }
 
-    public double max (double[] arr) {
-        double max = arr[0];
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] > max) {
-                max = arr[i];
+    public double max () {
+        double max = data[0];
+        for (int i = 0; i < data.length; i++) {
+            if (data[i] > max) {
+                max = data[i];
             }
         }
         return Math.round(max * 100.0) / 100.0;
     }
 
-    public double min (double[] arr) {
-        double min = arr[0];
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] < min) {
-                min = arr[i];
+    public double min () {
+        double min = data[0];
+        for (int i = 0; i < data.length; i++) {
+            if (data[i] < min) {
+                min = data[i];
             }
         }
         return Math.round(min * 100.0) / 100.0;
@@ -134,7 +134,7 @@ public class Country {
 			double valueRounded = Math.round(data[i] * 100.0) / 100.0; 
 			ans += valueRounded + "		"; 
 		}
-		ans += "\nThis is the \"" + series + "\" for " + countryName + "\nMinimum: " + min(data) + "\nMaximum: " + max(data);
+		ans += "\nThis is the \"" + series + "\" for " + countryName + "\nMinimum: " + min() + "\nMaximum: " + max();
 
 		return ans;	
     }

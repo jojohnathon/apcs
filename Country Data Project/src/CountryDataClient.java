@@ -45,8 +45,8 @@ public class CountryDataClient {
 			
 			// System.out.println("Trend: " + country.getTrend());
 			
-			// Country testCountry = new Country("test", "Access to electricity (annual %)", years, data);
-			// System.out.println(testCountry.getTrend());
+			Country testCountry = new Country("test", "Access to electricity (annual %)", years, data);
+			System.out.println(testCountry.getAcronym());
 		}
 
 		sc.close();
