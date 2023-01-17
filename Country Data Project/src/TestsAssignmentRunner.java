@@ -1,4 +1,3 @@
-
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
@@ -12,7 +11,7 @@ public class TestsAssignmentRunner
             System.out.println("\nProgram did not pass all unit tests.  Tests that failed are:");
 		for (Failure fail : result.getFailures())
 		{
-			System.out.println(fail.toString());
+			System.out.println(fail.toString()+"\n");
 		}
 		if (result.wasSuccessful())
 		{
