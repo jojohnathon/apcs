@@ -54,29 +54,21 @@ public class Country {
     }
 
     private boolean trendsUp() {
-        double endValue = data[data.length - 1];
-        boolean trendsUp = false;
-        for (int i = 0; i < data.length - 1; i++) {
-            if (endValue > data[i]) {
-                trendsUp = true;
-            } else if (endValue < data[i]) {
+        for (int i = 1; i < data.length; i++) {
+            if (data[i] <= data[i - 1]) {
                 return false;
             }
         }
-        return trendsUp;
+        return true;
     }
 
     private boolean trendsDown() {
-        double endValue = data[0];
-        boolean trendsDown = false;
-        for (int i = data.length - 2; i >= 0; i--) {
-            if (endValue < data[i]) {
-                trendsDown = true;
-            } else if (endValue > data[i]) {
+        for (int i = 1; i < data.length; i++) {
+            if (data[i] >= data[i - 1]) {
                 return false;
             }
         }
-        return trendsDown;
+        return true;
     }
     //remove something from an array
     private String[] remove(String[] ans, int idx) { 
