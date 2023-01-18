@@ -22,7 +22,10 @@ public class Country {
         for (int i = 0; i < series.length(); i++) {
             if (series.charAt(i) == '(') {
                 index = i;
-            }
+            } 
+        }
+        if (index == 0){
+            return series;
         }
         return series.substring(0, index);
     }
@@ -52,10 +55,10 @@ public class Country {
 
     public String getTrend() {
         if (trendsUp()) {
-            return "trends up";
+            return "up";
         } 
         if (trendsDown()) {
-            return "trends down";
+            return "down";
         }
         return "no trend";
     }
@@ -98,7 +101,7 @@ public class Country {
         //look for excluded words
         for (int i = 0; i < excluded.length; i++) {
             for (int j = 0; j < ans.length; j++) {
-                if (ans[j].contains(excluded[i])) {
+                if (excluded[i].contains(ans[j])) {
                     ans = remove(ans, j); //call remove method
                 }
             }
