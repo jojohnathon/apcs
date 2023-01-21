@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ArrayListPracticeLab 
 {
@@ -122,12 +123,10 @@ public class ArrayListPracticeLab
 	 * after the method finishes executing.
 	 */
 	public static void doubleList(ArrayList<String> list) {
-		ArrayList<String> answer = new ArrayList<>();
-		for (String s: list) {
-			answer.add(s);
-			answer.add(s);
+		for (int i = 0; i < list.size(); i+=2) {
+			list.add(i, list.get(i));
 		}
-		list = answer;
+		
 	}
 	
 	
@@ -199,13 +198,19 @@ public class ArrayListPracticeLab
 		String[] test_doub_2 = {"One string only"};		
 		String[] test_doub_3 = {};		
 		
-		doubleList(convertArrayToList(test_doub_1));
-		System.out.println(test_doub_1);
-		doubleList(convertArrayToList(test_doub_2));
-		System.out.println(test_doub_2);
-		doubleList(convertArrayToList(test_doub_3));
-		System.out.println(test_doub_3);
-		//TODO bro
+		ArrayList<String> test_doub_1_list = new ArrayList<String>(Arrays.asList(test_doub_1));
+        doubleList(test_doub_1_list);
+		System.out.println(test_doub_1_list);
+
+		ArrayList<String> test_doub_2_list = new ArrayList<String>(Arrays.asList(test_doub_2));
+        doubleList(test_doub_2_list);
+		System.out.println(test_doub_2_list);
+
+		ArrayList<String> test_doub_3_list = new ArrayList<String>(Arrays.asList(test_doub_3));
+        doubleList(test_doub_3_list);
+		System.out.println(test_doub_3_list);
+		
+	
 	}
 		
 		
