@@ -4,6 +4,8 @@
 Client code that will process the file and print results
 */
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 
@@ -13,45 +15,89 @@ public class CountryDataClient {
 		
 		File inputFile = new File("Country Data Project\\src\\CountryDataSet - Sheet1.csv");
 		Scanner sc = new Scanner(inputFile);
-		//get and put the series into an array
-		String series = sc.nextLine();
-		String[] seriesArr = series.split(",");
-		series = seriesArr[0];
+		sc.useDelimiter("[,\"\r\n]+");
+		//get the series
+		// String series = sc.nextLine();
+		// String[] seriesArr = series.split(",");
+		String series = sc.next();
 		//get and format the years
-		String yearsRaw = sc.nextLine();
-		String[] yearsArr = yearsRaw.split(",");
-		int numYears = yearsArr.length - 1;
+		// String yearsRaw = sc.nextLine();
+		// String[] yearsArr = yearsRaw.split(",");
+		// int numYears = yearsArr.length - 1;
 		//put the years into an array
-		int[] years = new int[numYears];
-		for (int i = 0; i < years.length; i++) {
-			years[i] += Integer.parseInt(yearsArr[i + 1]); 
+		// int[] years = new int[numYears];
+		// for (int i = 0; i < years.length; i++) {
+		// 	years[i] += Integer.parseInt(yearsArr[i + 1]); 
+		// }
+		sc.nextLine(); 
+		sc.next();
+		ArrayList<Integer> years = new ArrayList<>();
+		while(sc.hasNextInt()) {
+			years.add(sc.nextInt());
 		}
 		//print title
-		System.out.println("GDP for " + years[0] + "-" + years[years.length - 1]);
+		System.out.println("GDP for " + years.get(0) + "-" + years.get(years.size() - 1));
 
+
+		ArrayList<Country> countryList = new ArrayList<>(); 
 		//print out all the data
 		while(sc.hasNextLine()) { 
-			String dataRaw = sc.nextLine();
-			String[] dataArr = dataRaw.split(",");
-			double[] data = new double[numYears];
-			for (int j = 0; j < dataArr.length - 1; j++) {
-				data[j] = Double.parseDouble(dataArr[j + 1]);
+			String countryName = sc.next(); //stores country name
+			ArrayList<Double> data = new ArrayList<>();
+			// sc.useDelimiter("[0-9]+.[0-9]+");
+			while(sc.hasNextDouble()) {
+				data.add(sc.nextDouble());
 			}
-
+			// String dataRaw = sc.nextLine();
+			// String[] dataArr = dataRaw.split(",");
+			// double[] data = new double[numYears];
+			// for (int j = 0; j < dataArr.length - 1; j++) {
+			// 	data.add(Double.parseDouble(dataArr[j + 1]));
+			// }
 			// System.out.println(summarizeCountry(dataArr[0], series, years, data) + "\n");
-
-			Country country = new Country(dataArr[0], series, years, data);
-			System.out.println(country.toString() + "\n" + "Trend: " + country.getTrend() + "\n");
+			
+			Country Country = new Country(countryName, series, years, data);
+			countryList.add(Country);
+			System.out.println(Country.toString() + "\n" + "Trend: " + Country.getTrend() + "\n");
 			
 			// System.out.println("Trend: " + country.getTrend());
 			
-			Country testCountry = new Country("test", "Mobile cellular subscriptions (per 100 people)", years, data);
-			System.out.println(testCountry.getAcronym());
+			// Country testCountry = new Country("test", "Mobile cellular subscriptions (per 100 people)", years, data);
+			// System.out.println(testCountry.getAcronym());
 		}
 
 		sc.close();
 
 		
+	}
+
+	public static void removeByName(ArrayList<Country> countries, String name) {
+		for (int i = 0; i < countries.size(); i++) {
+			if (countries.get(i).getCountry().equals(name)) {
+				countries.remove(i);
+				i--;
+			}
+		}
+	}
+
+	public static void removeNoTrend(ArrayList<Country> countries) {
+		for (int i = 0; i < countries.size(); i++) {
+			if (countries.get(i).getTrend().equals("no trend")) {
+				countries.remove(i);
+				i--;
+			}
+		}
+	}
+
+	public static ArrayList<String> getListBasedOnTrend(ArrayList<Country> countries, String trendType) {
+		if (!(trendType.equals("up") || trendType.equals("down") || trendType.equals("no trend"))) throw new IllegalArgumentException("Invalid trendType");
+		ArrayList<String> ans = new ArrayList<>();
+		for (int i = 0; i < countries.size(); i++) {
+			if (countries.get(i).getTrend().equals(trendType)) {
+				ans.add(countries.get(i).getCountry());
+			}
+		}
+		return ans;
 	}
 	
 

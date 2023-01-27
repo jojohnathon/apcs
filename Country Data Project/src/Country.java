@@ -1,11 +1,13 @@
+import java.util.ArrayList;
+
 public class Country {
     String countryName = "";
     String series = "";
-    int[] years = new int[5];
-    double[] data = new double[5];
+    ArrayList<Integer> years = new ArrayList<>();
+    ArrayList<Double> data = new ArrayList<>();
 
 
-    public Country(String countryName, String series, int[] years, double[] data) {
+    public Country(String countryName, String series, ArrayList<Integer> years, ArrayList<Double> data) {
         //constructor
         this.countryName = countryName;
         this.series = series;
@@ -30,11 +32,11 @@ public class Country {
         return series.substring(0, index);
     }
 
-    public int[] getYears() {
+    public ArrayList<Integer> getYears() {
         return years;
     }
 
-    public double[] getData() {
+    public ArrayList<Double> getData() {
         return data;
     }
 
@@ -42,8 +44,8 @@ public class Country {
         this.series = newSeries;
     }
 
-    public void setData(double[] arr) {
-        this.data = arr;
+    public void setData(ArrayList<Double> list) {
+        this.data = list;
     }
     public String getUnits() {
         int start = series.indexOf("(");
@@ -64,8 +66,8 @@ public class Country {
     }
 
     private boolean trendsUp() {
-        for (int i = 1; i < data.length; i++) {
-            if (data[i] <= data[i - 1]) {
+        for (int i = 1; i < data.size(); i++) {
+            if (data.get(i) <= data.get(i - 1)) {
                 return false;
             }
         }
@@ -73,8 +75,8 @@ public class Country {
     }
 
     private boolean trendsDown() {
-        for (int i = 1; i < data.length; i++) {
-            if (data[i] >= data[i - 1]) {
+        for (int i = 1; i < data.size(); i++) {
+            if (data.get(i) >= data.get(i - 1)) {
                 return false;
             }
         }
@@ -114,33 +116,46 @@ public class Country {
     }
 
     public double max () {
-        double max = data[0];
-        for (int i = 0; i < data.length; i++) {
-            if (data[i] > max) {
-                max = data[i];
+        double max = data.get(0);
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i) > max) {
+                max = data.get(i);
             }
         }
         return max;
     }
 
     public double min () {
-        double min = data[0];
-        for (int i = 0; i < data.length; i++) {
-            if (data[i] < min) {
-                min = data[i];
+        double min = data.get(0);
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i) < min) {
+                min = data.get(i);
             }
         }
         return min;
     }
 
+    public void addDataPoint(int year, double newDatum) {
+        years.add(year);
+        data.add(newDatum);
+    }
+
+    public void editDataPoint(int year, double newDatum) {
+        for (int i = 0; i < years.size(); i++) {
+            if (years.get(i) == year) {
+                data.set(i, newDatum);
+            }
+        }
+    }
+
     public String toString() {
         String ans = "";
-		for (int i = 0; i < years.length; i++) {
-			ans += years[i] + "		";
+		for (int i = 0; i < years.size(); i++) {
+			ans += years.get(i) + "		";
 		}
 		ans += "\n";
-		for (int i = 0; i < data.length; i++) {
-			double valueRounded = Math.round(data[i] * 100.0) / 100.0; 
+		for (int i = 0; i < data.size(); i++) {
+			double valueRounded = Math.round(data.get(i) * 100.0) / 100.0; 
 			ans += valueRounded + "		"; 
 		}
 		ans += "\nThis is the \"" + series + "\" for " + countryName + "\nMinimum: " + Math.round(min() * 100.0) / 100.0  + "\nMaximum: " + Math.round(max() * 100.0) / 100.0;
