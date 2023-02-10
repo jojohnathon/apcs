@@ -18,7 +18,7 @@ public class Country {
     public String getCountry() {
         return countryName;
     }
-
+    //returns the series of the country without the things in parenthesis
     public String getSeries() {
         int index = 0;
         for (int i = 0; i < series.length(); i++) {
@@ -43,10 +43,11 @@ public class Country {
     public void setSeries(String newSeries) {
         this.series = newSeries;
     }
-
+    
     public void setData(ArrayList<Double> list) {
         this.data = list;
     }
+    //finds the unit of measurement in the series
     public String getUnits() {
         int start = series.indexOf("(");
         int end = series.indexOf(")");
@@ -54,7 +55,7 @@ public class Country {
         String ans = series.substring(start + 1, end);
         return ans;
     }
-
+    //finds the trend type
     public String getTrend() {
         if (trendsUp()) {
             return "up";
@@ -64,7 +65,7 @@ public class Country {
         }
         return "no trend";
     }
-
+    //checks if all the data values increase after each other
     private boolean trendsUp() {
         for (int i = 1; i < data.size(); i++) {
             if (data.get(i) <= data.get(i - 1)) {
@@ -73,7 +74,7 @@ public class Country {
         }
         return true;
     }
-
+    //checks if all the data values decrease after each other
     private boolean trendsDown() {
         for (int i = 1; i < data.size(); i++) {
             if (data.get(i) >= data.get(i - 1)) {
@@ -94,7 +95,7 @@ public class Country {
 		}
 		return answer;
 	}
-
+    //turns the series name into an acronym
     public String getAcronym() {
         //this method returns an acronym
         String ans[] = getSeries().split(" ");
@@ -114,7 +115,7 @@ public class Country {
         }
         return output.toUpperCase();
     }
-
+    //finds the maximum of the data
     public double max () {
         double max = data.get(0);
         for (int i = 0; i < data.size(); i++) {
@@ -124,7 +125,7 @@ public class Country {
         }
         return max;
     }
-
+    //finds the minimum of the data
     public double min () {
         double min = data.get(0);
         for (int i = 0; i < data.size(); i++) {
@@ -134,12 +135,12 @@ public class Country {
         }
         return min;
     }
-
+    //add a new data value to the list
     public void addDataPoint(int year, double newDatum) {
         years.add(year);
         data.add(newDatum);
     }
-
+    //edit a certain data point
     public void editDataPoint(int year, double newDatum) {
         for (int i = 0; i < years.size(); i++) {
             if (years.get(i) == year) {
@@ -147,7 +148,7 @@ public class Country {
             }
         }
     }
-
+    //prints out data from the country
     public String toString() {
         String ans = "";
 		for (int i = 0; i < years.size(); i++) {
@@ -158,7 +159,10 @@ public class Country {
 			double valueRounded = Math.round(data.get(i) * 100.0) / 100.0; 
 			ans += valueRounded + "		"; 
 		}
-		ans += "\nThis is the \"" + series + "\" for " + countryName + "\nMinimum: " + Math.round(min() * 100.0) / 100.0  + "\nMaximum: " + Math.round(max() * 100.0) / 100.0;
+		ans += "\nThis is the \"" + series + "\" for " + countryName + 
+        "\nMinimum: " + min() +
+        "\nMaximum: " + max() +
+        "\nTrend: " + getTrend() + "\n";
 
 		return ans;	
     }

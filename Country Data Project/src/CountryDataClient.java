@@ -29,7 +29,7 @@ public class CountryDataClient {
 		// for (int i = 0; i < years.length; i++) {
 		// 	years[i] += Integer.parseInt(yearsArr[i + 1]); 
 		// }
-		sc.nextLine(); 
+		sc.nextLine();  //move the scanner over
 		sc.next();
 		ArrayList<Integer> years = new ArrayList<>();
 		while(sc.hasNextInt()) {
@@ -38,7 +38,7 @@ public class CountryDataClient {
 		//print title
 		System.out.println("GDP for " + years.get(0) + "-" + years.get(years.size() - 1));
 
-
+		
 		ArrayList<Country> countryList = new ArrayList<>(); 
 		//print out all the data
 		while(sc.hasNextLine()) { 
@@ -58,7 +58,7 @@ public class CountryDataClient {
 			
 			Country Country = new Country(countryName, series, years, data);
 			countryList.add(Country);
-			System.out.println(Country.toString() + "\n" + "Trend: " + Country.getTrend() + "\n");
+			System.out.println(Country.toString());
 			
 			// System.out.println("Trend: " + country.getTrend());
 			
@@ -70,7 +70,7 @@ public class CountryDataClient {
 
 		
 	}
-
+	//removes the country based on the name
 	public static void removeByName(ArrayList<Country> countries, String name) {
 		for (int i = 0; i < countries.size(); i++) {
 			if (countries.get(i).getCountry().equals(name)) {
@@ -79,7 +79,7 @@ public class CountryDataClient {
 			}
 		}
 	}
-
+	//remove countries with the trend tyupe of 'no trend'
 	public static void removeNoTrend(ArrayList<Country> countries) {
 		for (int i = 0; i < countries.size(); i++) {
 			if (countries.get(i).getTrend().equals("no trend")) {
@@ -88,7 +88,7 @@ public class CountryDataClient {
 			}
 		}
 	}
-
+	//removes countries based on trendtype
 	public static ArrayList<String> getListBasedOnTrend(ArrayList<Country> countries, String trendType) {
 		if (!(trendType.equals("up") || trendType.equals("down") || trendType.equals("no trend"))) throw new IllegalArgumentException("Invalid trendType");
 		ArrayList<String> ans = new ArrayList<>();
