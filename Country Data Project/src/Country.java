@@ -1,3 +1,9 @@
+/*
+@author johnathon Zheng
+@version February 13, 2023
+takes data and puts it into a Country object
+*/
+
 import java.util.ArrayList;
 
 public class Country {
@@ -8,13 +14,13 @@ public class Country {
 
 
     public Country(String countryName, String series, ArrayList<Integer> years, ArrayList<Double> data) {
-        //constructor
+        //constructor for Country object
         this.countryName = countryName;
         this.series = series;
         this.years = years;
         this.data = data;
     }
-
+    //returns the name of the current country
     public String getCountry() {
         return countryName;
     }
@@ -31,19 +37,19 @@ public class Country {
         }
         return series.substring(0, index);
     }
-
+    //return a list of the years in the data
     public ArrayList<Integer> getYears() {
         return years;
     }
-
+    //return a list of data points
     public ArrayList<Double> getData() {
         return data;
     }
-
+    //set the name of the series
     public void setSeries(String newSeries) {
         this.series = newSeries;
     }
-    
+    //replace the data list with a new data list
     public void setData(ArrayList<Double> list) {
         this.data = list;
     }

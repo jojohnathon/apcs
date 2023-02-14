@@ -58,12 +58,16 @@ public class CountryDataClient {
 			
 			Country Country = new Country(countryName, series, years, data);
 			countryList.add(Country);
-			System.out.println(Country.toString());
+			
 			
 			// System.out.println("Trend: " + country.getTrend());
 			
 			// Country testCountry = new Country("test", "Mobile cellular subscriptions (per 100 people)", years, data);
 			// System.out.println(testCountry.getAcronym());
+		}
+
+		for (int i = 0; i < countryList.size(); i++) {
+			System.out.println(countryList.get(i));
 		}
 
 		sc.close();
