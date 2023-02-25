@@ -11,19 +11,19 @@ public class SpreadsheetLocation implements Location
     {
         //remove the letter in front and subtract one
         return Integer.valueOf(
-            cellName.substring(1, cellName.length())) - 1;
+            cellName.substring(1)) - 1;
     }
 
     @Override
     public int getCol()
     {
         //look at the letter and subtract the ASCII value to convert char into int
-        return cellName.charAt(0) - 64;
+        return cellName.charAt(0) - (char) 'A';
     }
     
     public SpreadsheetLocation(String cellName)
     {
-        this.cellName = cellName;
+        this.cellName = cellName.toUpperCase();
     }
 
 }
