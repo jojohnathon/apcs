@@ -4,7 +4,7 @@ package textExcel;
 
 public class SpreadsheetLocation implements Location
 {
-    String cellName;
+    private String cellName;
 
     @Override
     public int getRow()
@@ -24,6 +24,10 @@ public class SpreadsheetLocation implements Location
     public SpreadsheetLocation(String cellName)
     {
         this.cellName = cellName.toUpperCase();
+    }
+
+    public String getCellName() {
+        return cellName;
     }
 
 }
