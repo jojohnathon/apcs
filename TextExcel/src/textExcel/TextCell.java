@@ -1,17 +1,19 @@
 package textExcel;
 
 public class TextCell implements Cell {
-    String text;
+    private String text;
 
     @Override
     public String abbreviatedCellText() {
         //pad the text with extra spaces if needed
-        if (text.length() > 10) {
-            for (int i = 0; i < (10 - text.length()); i++) {
+        if (text.length() < 10) {
+            int missingSpaces = 10 - text.length();
+            for (int i = 0; i < missingSpaces; i++) {
                 text += " ";
             }
+            return text;
         }
-        return text.substring(0, 11);
+        return text.substring(0, 10);
     }
 
     @Override

@@ -6,7 +6,7 @@ import javax.swing.event.CellEditorListener;
 
 public class Spreadsheet implements Grid
 {
-	Cell[][] spreadsheet;
+	private Cell[][] spreadsheet;
 
 	@Override
 	public String processCommand(String input)
@@ -15,28 +15,38 @@ public class Spreadsheet implements Grid
 		SpreadsheetLocation command = new SpreadsheetLocation(commandArr[0]); //devious
 		String operator = "";
 		String argument = "";
-
-		if (commandArr[1].equals("=")) {
-			operator = commandArr[1];
-			argument = commandArr[2]; //TODO idk if the quotation marks need to be removed
+		try {
+			if (commandArr.length >= 2) {
+				if (commandArr[1].contains("=")) {
+					operator = commandArr[1];
+					// argument = commandArr[2]; 
+				} else {
+					operator = commandArr[1]; //clear specific cell setup
+				}
+			}
+		} catch (Exception e) {
+			throw e;
 		}
 
-		//TODO use command object?
-		if (command.getCellName() == "clear") { //clear entire spreadsheet
+		if (command.getCellName().equalsIgnoreCase("clear")) { //clear entire spreadsheet
 			for (int i = 0; i < spreadsheet.length; i ++) {
 				for (int j = 0; j < spreadsheet[i].length; j++) {
 					spreadsheet[i][j] = new EmptyCell(); 
 				}
 			}
+			return getGridText();
 
-		} else if (command.getCellName().equals("clear " + argument)) { //clear specific cell
+		} else if (command.getCellName().contains("clear") && commandArr.length == 2) { //clear specific cell
+			SpreadsheetLocation clearCell = new SpreadsheetLocation(operator);
+			spreadsheet[clearCell.getRow()][clearCell.getCol()] = new EmptyCell();
+			return getGridText();
+		} else if (operator.contains("=")) { //cell assignment
+			spreadsheet[command.getRow()][command.getCol()] = new TextCell(operator.substring(3, operator.length() - 1)); 
+			return getGridText(); 
+		} else if (command.equals("")){ //idk
 
-		} else if (operator.equals("=")) { //cell assignment
-
-		} else if (command){ //cell inspection
-
-		} else {
-
+		} else { //cell inspection
+			return getCell(command).fullCellText();
 		}
 		return "";
 	}
@@ -62,11 +72,14 @@ public class Spreadsheet implements Grid
 	@Override
 	public String getGridText()
 	{
-		// TODO Auto-generated method stub
 		String gridText = "   |A         |B         |C         |D         |E         |F         |G         |H         |I         |J         |K         |L         |   \n";
-		for (int i = 1; i <= getRows(); i++) {
-			gridText += i + "  |";
-			for (int j = 0; j < getCols(); i++) {
+		for (int i = 0; i < getRows(); i++) {
+			if (i <= 8) {
+				gridText += i + 1 + "  |";
+			} else {
+				gridText += i + 1 + " |";
+			}
+			for (int j = 0; j < getCols(); j++) {
 				gridText += spreadsheet[i][j].abbreviatedCellText() + "|";
 			}
 			gridText += "\n";

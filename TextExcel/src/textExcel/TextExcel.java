@@ -18,11 +18,12 @@ public class TextExcel
 		Scanner sc = new Scanner(System.in);
 		Spreadsheet excel = new Spreadsheet();
 		
+		System.out.println(excel.getGridText());
 		while (quit) {
-			String command = sc.next();
+			String command = sc.nextLine();
 			excel.processCommand(command);
 
-			if (command.equalsIgnoreCase("quit")) {
+			if (command.equalsIgnoreCase("quit")) { //TODO implement quit command
 				quit = false;
 			}
 
