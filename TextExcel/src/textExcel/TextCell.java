@@ -5,15 +5,8 @@ public class TextCell implements Cell {
 
     @Override
     public String abbreviatedCellText() {
-        //pad the text with extra spaces if needed
-        if (text.length() < 10) {
-            int missingSpaces = 10 - text.length();
-            for (int i = 0; i < missingSpaces; i++) {
-                text += " ";
-            }
-            return text;
-        }
-        return text.substring(0, 10);
+        String poop = text + "                               ";
+        return poop.substring(0, 10);
     }
 
     @Override

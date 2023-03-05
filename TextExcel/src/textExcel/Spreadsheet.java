@@ -14,21 +14,16 @@ public class Spreadsheet implements Grid
 		String[] commandArr = input.split(" ", 2);
 		SpreadsheetLocation command = new SpreadsheetLocation(commandArr[0]); //devious
 		String operator = "";
-		String argument = "";
-		try {
-			if (commandArr.length >= 2) {
-				if (commandArr[1].contains("=")) {
-					operator = commandArr[1];
-					// argument = commandArr[2]; 
-				} else {
-					operator = commandArr[1]; //clear specific cell setup
-				}
+		
+		if (commandArr.length >= 2) {
+			if (commandArr[1].contains("=")) {
+				operator = commandArr[1];
+			} else {
+				operator = commandArr[1]; //setup clear command for a  specific cell 
 			}
-		} catch (Exception e) {
-			throw e;
 		}
 
-		if (command.getCellName().equalsIgnoreCase("clear")) { //clear entire spreadsheet
+		if (command.getCellName().equalsIgnoreCase("clear") && commandArr.length < 2) { //clear entire spreadsheet
 			for (int i = 0; i < spreadsheet.length; i ++) {
 				for (int j = 0; j < spreadsheet[i].length; j++) {
 					spreadsheet[i][j] = new EmptyCell(); 
@@ -36,16 +31,21 @@ public class Spreadsheet implements Grid
 			}
 			return getGridText();
 
-		} else if (command.getCellName().contains("clear") && commandArr.length == 2) { //clear specific cell
+		} else if (command.getCellName().equalsIgnoreCase("clear") && commandArr.length == 2) { //clear specific cell
 			SpreadsheetLocation clearCell = new SpreadsheetLocation(operator);
 			spreadsheet[clearCell.getRow()][clearCell.getCol()] = new EmptyCell();
 			return getGridText();
 		} else if (operator.contains("=")) { //cell assignment
-			spreadsheet[command.getRow()][command.getCol()] = new TextCell(operator.substring(3, operator.length() - 1)); 
+			int index = 0;
+			for (int i = 0; i < operator.length(); i++) {
+				if (operator.charAt(i) == '\"') {
+					index = i + 1;
+					break;
+				}
+			}
+			spreadsheet[command.getRow()][command.getCol()] = new TextCell(operator.substring(index, operator.length() - 1)); 
 			return getGridText(); 
-		} else if (command.equals("")){ //idk
-
-		} else { //cell inspection
+		} else if (commandArr[0].length() > 0){ //cell inspection
 			return getCell(command).fullCellText();
 		}
 		return "";
@@ -72,7 +72,7 @@ public class Spreadsheet implements Grid
 	@Override
 	public String getGridText()
 	{
-		String gridText = "   |A         |B         |C         |D         |E         |F         |G         |H         |I         |J         |K         |L         |   \n";
+		String gridText = "   |A         |B         |C         |D         |E         |F         |G         |H         |I         |J         |K         |L         |\n";
 		for (int i = 0; i < getRows(); i++) {
 			if (i <= 8) {
 				gridText += i + 1 + "  |";
@@ -80,12 +80,14 @@ public class Spreadsheet implements Grid
 				gridText += i + 1 + " |";
 			}
 			for (int j = 0; j < getCols(); j++) {
-				gridText += spreadsheet[i][j].abbreviatedCellText() + "|";
+				gridText += spreadsheet[i][j].abbreviatedCellText();
+				gridText +=   "|";
+				
+				}
+				gridText += "\n";
 			}
-			gridText += "\n";
+			return gridText;
 		}
-		return gridText;
-	}
 
 	public Spreadsheet() {
 		this.spreadsheet = new Cell[20][12];
