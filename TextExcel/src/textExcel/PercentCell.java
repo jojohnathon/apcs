@@ -8,11 +8,17 @@ public class PercentCell extends RealCell {
     }
 
     public double getDoubleValue() {
-        return Double.valueOf(fullCellText()) * 100; //return the percentage in decimal form
+        return Double.valueOf(super.fullCellText()) / 100.0; //return the percentage in decimal form
     }
 
     public String abbreviatedCellText() {
-        String poop = fullCellText() + "%" + "                 ";
-        return poop.substring(0, 10);
+        if (super.fullCellText().indexOf(".") == -1 ) {
+            return (super.fullCellText() + "%" + "             ").substring(0, 10);
+        }
+        return (super.fullCellText().substring(0, super.fullCellText().indexOf(".")) + "%" + "                 ").substring(0, 10);
+    }
+
+    public String fullCellText() {
+        return getDoubleValue() + "";
     }
 }

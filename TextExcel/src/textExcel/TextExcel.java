@@ -23,7 +23,7 @@ public class TextExcel
 			String command = sc.nextLine();
 			excel.processCommand(command);
 
-			if (command.equalsIgnoreCase("quit")) { //TODO implement quit command
+			if (command.equalsIgnoreCase("quit")) { 
 				quit = false;
 			}
 

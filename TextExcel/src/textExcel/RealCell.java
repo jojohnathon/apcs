@@ -4,8 +4,8 @@ public class RealCell implements Cell{
     private String text; 
     @Override
     public String abbreviatedCellText() {
-        text += "                        ";
-        return text.substring(0, 10);
+        String poop = text + "                        ";
+        return poop.substring(0, 10);
 
     }
 

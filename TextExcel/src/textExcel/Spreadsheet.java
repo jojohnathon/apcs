@@ -1,7 +1,4 @@
 package textExcel;
-
-import javax.swing.event.CellEditorListener;
-
 // Update this file with your own code.
 
 public class Spreadsheet implements Grid
@@ -9,7 +6,7 @@ public class Spreadsheet implements Grid
 	private Cell[][] spreadsheet;
 
 	@Override
-	public String processCommand(String input) //TODO handle percent assignment + real value assignment
+	public String processCommand(String input) 
 	{
 		String[] commandArr = input.split(" ", 2);
 		SpreadsheetLocation command = new SpreadsheetLocation(commandArr[0]); //devious
@@ -36,22 +33,17 @@ public class Spreadsheet implements Grid
 			spreadsheet[clearCell.getRow()][clearCell.getCol()] = new EmptyCell();
 			return getGridText();
 		} else if (operator.contains("=")) { //cell assignment
-			int index = 0;
-			for (int i = 0; i < operator.length(); i++) { //find the index where the quotation marks start
-				if (operator.charAt(i) == '\"') {
-					index = i + 1;
-					break;
-				}
-			}
+			int index = operator.indexOf("\"") + 1;
+
 			// String cellText = operator.substring(index, operator.length() - 1);
 			int rowNum = command.getRow();
 			int colNum = command.getCol();
-
+			
 			if (index == 3) { //text cell
 				spreadsheet[rowNum][colNum] = new TextCell(operator.substring(index, operator.length() - 1)); 
 			} else if (operator.contains("%")){ //percent
 				spreadsheet[rowNum][colNum] = new PercentCell(operator.substring(2, operator.length() - 1));
-			} else if (operator.contains(".")) { //value cell
+			} else if (operator.contains(".") || isNum(operator.substring(2))) { //value cell
 				spreadsheet[rowNum][colNum] = new ValueCell(operator.substring(2));
 			} else if (operator.contains("+") || operator.contains("-") || operator.contains("/") || operator.contains("*")) {//formula cell
 				spreadsheet[rowNum][colNum] = new FormulaCell(operator);
@@ -110,6 +102,15 @@ public class Spreadsheet implements Grid
 			}
 		}
 
+	}
+
+	public boolean isNum(String num) {
+		if (num.matches("-?\\d+")) {
+			// -?     --> negative sign, could have none or one
+			// \\d+   --> one or more digits
+			return true;
+		}
+		return false;
 	}
 
 }

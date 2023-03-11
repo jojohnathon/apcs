@@ -7,4 +7,10 @@ public class ValueCell extends RealCell {
         //TODO Auto-generated constructor stub
     }
 
+    @Override
+    public String abbreviatedCellText() {
+            return (Double.valueOf(super.fullCellText()) + "           ").substring(0, 10);
+    }
+
+
 }
