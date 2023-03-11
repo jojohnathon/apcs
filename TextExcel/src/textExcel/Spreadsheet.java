@@ -9,7 +9,7 @@ public class Spreadsheet implements Grid
 	private Cell[][] spreadsheet;
 
 	@Override
-	public String processCommand(String input)
+	public String processCommand(String input) //TODO handle percent assignment + real value assignment
 	{
 		String[] commandArr = input.split(" ", 2);
 		SpreadsheetLocation command = new SpreadsheetLocation(commandArr[0]); //devious
@@ -37,14 +37,27 @@ public class Spreadsheet implements Grid
 			return getGridText();
 		} else if (operator.contains("=")) { //cell assignment
 			int index = 0;
-			for (int i = 0; i < operator.length(); i++) {
+			for (int i = 0; i < operator.length(); i++) { //find the index where the quotation marks start
 				if (operator.charAt(i) == '\"') {
 					index = i + 1;
 					break;
 				}
 			}
-			spreadsheet[command.getRow()][command.getCol()] = new TextCell(operator.substring(index, operator.length() - 1)); 
+			// String cellText = operator.substring(index, operator.length() - 1);
+			int rowNum = command.getRow();
+			int colNum = command.getCol();
+
+			if (index == 3) { //text cell
+				spreadsheet[rowNum][colNum] = new TextCell(operator.substring(index, operator.length() - 1)); 
+			} else if (operator.contains("%")){ //percent
+				spreadsheet[rowNum][colNum] = new PercentCell(operator.substring(2, operator.length() - 1));
+			} else if (operator.contains(".")) { //value cell
+				spreadsheet[rowNum][colNum] = new ValueCell(operator.substring(2));
+			} else if (operator.contains("+") || operator.contains("-") || operator.contains("/") || operator.contains("*")) {//formula cell
+				spreadsheet[rowNum][colNum] = new FormulaCell(operator);
+			}
 			return getGridText(); 
+
 		} else if (commandArr[0].length() > 0){ //cell inspection
 			return getCell(command).fullCellText();
 		}
