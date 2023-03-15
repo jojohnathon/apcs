@@ -43,10 +43,10 @@ public class Spreadsheet implements Grid
 				spreadsheet[rowNum][colNum] = new TextCell(operator.substring(index, operator.length() - 1)); 
 			} else if (operator.contains("%")){ //percent
 				spreadsheet[rowNum][colNum] = new PercentCell(operator.substring(2, operator.length() - 1));
-			} else if (operator.contains(".") || isNum(operator.substring(2))) { //value cell
+			} else if (!operator.contains("(") || isNum(operator.substring(2))) { //value cell
 				spreadsheet[rowNum][colNum] = new ValueCell(operator.substring(2));
-			} else if (operator.contains("+") || operator.contains("-") || operator.contains("/") || operator.contains("*")) {//formula cell
-				spreadsheet[rowNum][colNum] = new FormulaCell(operator);
+			} else {//formula cell
+				spreadsheet[rowNum][colNum] = new FormulaCell(operator.substring(2));
 			}
 			return getGridText(); 
 
