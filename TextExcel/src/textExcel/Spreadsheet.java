@@ -46,7 +46,7 @@ public class Spreadsheet implements Grid
 			} else if (!operator.contains("(") || isNum(operator.substring(2))) { //value cell
 				spreadsheet[rowNum][colNum] = new ValueCell(operator.substring(2));
 			} else {//formula cell
-				spreadsheet[rowNum][colNum] = new FormulaCell(operator.substring(2));
+				spreadsheet[rowNum][colNum] = new FormulaCell(operator.substring(2), this);
 			}
 			return getGridText(); 
 
@@ -111,6 +111,15 @@ public class Spreadsheet implements Grid
 			return true;
 		}
 		return false;
+	}
+
+	public boolean isNumber(String num) {
+		try {
+			Double.parseDouble(num);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
 	}
 
 }
