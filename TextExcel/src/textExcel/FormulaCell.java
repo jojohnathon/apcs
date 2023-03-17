@@ -20,24 +20,21 @@ public class FormulaCell extends RealCell {
             SpreadsheetLocation startingCell = new SpreadsheetLocation(cellSelection[0]);
             SpreadsheetLocation lastCell = new SpreadsheetLocation(cellSelection[1]);
             int iteratedCellCount = 0; 
-            
+
             for (int i = startingCell.getCol(); i <= lastCell.getCol(); i++) {
                 for (int j = startingCell.getRow(); j <= lastCell.getRow(); j++) {
                     //something malicious is brewing
                     // char newColLetter = (char) (i + (char)'A');
                     // String newRowNum = j + 1 + "";
-                    // SpreadsheetLocation selectedCell = ;
-                    // SpreadsheetLocation selectedCell = new SpreadsheetLocation(startingCell.getCol() + ((char)'A' + i) + startingCell.getRow() + i + "");
-                    ans += ((RealCell) spread.getCell(new SpreadsheetLocation(((char) (i + (char)'A')) + (j + 1 + "")))).getDoubleValue();
-                    iteratedCellCount++;
-                    
+                        ans += ((RealCell) spread.getCell(new SpreadsheetLocation(((char) (i + (char)'A')) + (j + 1 + "")))).getDoubleValue();
+                        iteratedCellCount++;
                 }
             }
             if (formula[0].equalsIgnoreCase("AVG")) {
                 return ans / iteratedCellCount;
-            } else {
+            } else if (formula[0].equalsIgnoreCase("SUM")){
                 return ans;
-            }
+            } 
         } 
 
         for (int i = 0; i < formula.length; i++) {
@@ -55,14 +52,12 @@ public class FormulaCell extends RealCell {
                 } else if (operator == '*') {
                     ans *= fortnite(i + 1, formula);
                     i++;
-
                 } else if (operator == '/') {
                     ans /= fortnite(i + 1, formula);
                     i++;
 
                 }
             }
-            
         }
         return ans;
     }

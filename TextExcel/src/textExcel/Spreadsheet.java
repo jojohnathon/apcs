@@ -20,7 +20,7 @@ public class Spreadsheet implements Grid
 			}
 		}
 
-		if (command.getCellName().equalsIgnoreCase("clear") && commandArr.length < 2) { //clear entire spreadsheet
+		if (commandArr[0].equalsIgnoreCase("clear") && commandArr.length < 2) { //clear entire spreadsheet
 			for (int i = 0; i < spreadsheet.length; i ++) {
 				for (int j = 0; j < spreadsheet[i].length; j++) {
 					spreadsheet[i][j] = new EmptyCell(); 
@@ -28,7 +28,7 @@ public class Spreadsheet implements Grid
 			}
 			return getGridText();
 
-		} else if (command.getCellName().equalsIgnoreCase("clear") && commandArr.length == 2) { //clear specific cell
+		} else if (commandArr[0].equalsIgnoreCase("clear") && commandArr.length == 2) { //clear specific cell
 			SpreadsheetLocation clearCell = new SpreadsheetLocation(operator);
 			spreadsheet[clearCell.getRow()][clearCell.getCol()] = new EmptyCell();
 			return getGridText();
@@ -111,15 +111,6 @@ public class Spreadsheet implements Grid
 			return true;
 		}
 		return false;
-	}
-
-	public boolean isNumber(String num) {
-		try {
-			Double.parseDouble(num);
-			return true;
-		} catch (NumberFormatException e) {
-			return false;
-		}
 	}
 
 }
