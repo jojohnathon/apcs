@@ -38,20 +38,27 @@ public class Spreadsheet implements Grid
 			// String cellText = operator.substring(index, operator.length() - 1);
 			int rowNum = command.getRow();
 			int colNum = command.getCol();
-			
-			if (index == 3) { //text cell
-				spreadsheet[rowNum][colNum] = new TextCell(operator.substring(index, operator.length() - 1)); 
-			} else if (operator.contains("%")){ //percent
-				spreadsheet[rowNum][colNum] = new PercentCell(operator.substring(2, operator.length() - 1));
-			} else if (!operator.contains("(") || isNum(operator.substring(2))) { //value cell
-				spreadsheet[rowNum][colNum] = new ValueCell(operator.substring(2));
-			} else {//formula cell
-				spreadsheet[rowNum][colNum] = new FormulaCell(operator.substring(2), this);
+			try {
+				if (index == 3) { //text cell
+					spreadsheet[rowNum][colNum] = new TextCell(operator.substring(index, operator.length() - 1)); 
+				} else if (operator.contains("%")){ //percent
+					spreadsheet[rowNum][colNum] = new PercentCell(operator.substring(2, operator.length() - 1));
+				} else if (!operator.contains("(") || isNum(operator.substring(2))) { //value cell
+					spreadsheet[rowNum][colNum] = new ValueCell(operator.substring(2));
+				} else {//formula cell
+					spreadsheet[rowNum][colNum] = new FormulaCell(operator.substring(2), this);
+				}
+				return getGridText(); 
+			} catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+				return "ERROR: invalid cell assignment";
 			}
-			return getGridText(); 
 
 		} else if (commandArr[0].length() > 0){ //cell inspection
-			return getCell(command).fullCellText();
+			try {
+				return getCell(command).fullCellText();
+			} catch (NumberFormatException nfe) {
+				return "ERROR: invalid command";
+			}
 		}
 		return "";
 	}
