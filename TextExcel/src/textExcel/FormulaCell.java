@@ -24,12 +24,11 @@ public class FormulaCell extends RealCell {
             for (int i = startingCell.getCol(); i <= lastCell.getCol(); i++) {
                 for (int j = startingCell.getRow(); j <= lastCell.getRow(); j++) {
                     //something malicious is brewing
-                    int boals = i + (char)'A';
-                    char newColLetter = (char) boals;
-                    String newRowNum = j + 1 + "";
-                    SpreadsheetLocation selectedCell = new SpreadsheetLocation(newColLetter + newRowNum);
+                    // char newColLetter = (char) (i + (char)'A');
+                    // String newRowNum = j + 1 + "";
+                    // SpreadsheetLocation selectedCell = ;
                     // SpreadsheetLocation selectedCell = new SpreadsheetLocation(startingCell.getCol() + ((char)'A' + i) + startingCell.getRow() + i + "");
-                    ans += ((RealCell) spread.getCell(selectedCell)).getDoubleValue();
+                    ans += ((RealCell) spread.getCell(new SpreadsheetLocation(((char) (i + (char)'A')) + (j + 1 + "")))).getDoubleValue();
                     iteratedCellCount++;
                     
                 }
