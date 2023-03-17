@@ -70,8 +70,7 @@ public class FormulaCell extends RealCell {
         try {
             return Double.parseDouble(formula[i]);
         } catch (NumberFormatException e) { //must be cell ref
-            SpreadsheetLocation cellReference = new SpreadsheetLocation(formula[i]);
-            return ((RealCell) spread.getCell(cellReference)).getDoubleValue();
+            return ((RealCell) spread.getCell(new SpreadsheetLocation(formula[i]))).getDoubleValue();
         }
     }
     
