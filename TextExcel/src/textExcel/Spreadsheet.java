@@ -20,7 +20,7 @@ public class Spreadsheet implements Grid
 			}
 		}
 
-		if (command.getCellName().equalsIgnoreCase("clear") && commandArr.length < 2) { //clear entire spreadsheet
+		if (commandArr[0].equalsIgnoreCase("clear") && commandArr.length < 2) { //clear entire spreadsheet
 			for (int i = 0; i < spreadsheet.length; i ++) {
 				for (int j = 0; j < spreadsheet[i].length; j++) {
 					spreadsheet[i][j] = new EmptyCell(); 
@@ -28,7 +28,7 @@ public class Spreadsheet implements Grid
 			}
 			return getGridText();
 
-		} else if (command.getCellName().equalsIgnoreCase("clear") && commandArr.length == 2) { //clear specific cell
+		} else if (commandArr[0].equalsIgnoreCase("clear") && commandArr.length == 2) { //clear specific cell
 			SpreadsheetLocation clearCell = new SpreadsheetLocation(operator);
 			spreadsheet[clearCell.getRow()][clearCell.getCol()] = new EmptyCell();
 			return getGridText();
@@ -38,20 +38,27 @@ public class Spreadsheet implements Grid
 			// String cellText = operator.substring(index, operator.length() - 1);
 			int rowNum = command.getRow();
 			int colNum = command.getCol();
-			
-			if (index == 3) { //text cell
-				spreadsheet[rowNum][colNum] = new TextCell(operator.substring(index, operator.length() - 1)); 
-			} else if (operator.contains("%")){ //percent
-				spreadsheet[rowNum][colNum] = new PercentCell(operator.substring(2, operator.length() - 1));
-			} else if (!operator.contains("(") || isNum(operator.substring(2))) { //value cell
-				spreadsheet[rowNum][colNum] = new ValueCell(operator.substring(2));
-			} else {//formula cell
-				spreadsheet[rowNum][colNum] = new FormulaCell(operator.substring(2), this);
+			try {
+				if (index == 3) { //text cell
+					spreadsheet[rowNum][colNum] = new TextCell(operator.substring(index, operator.length() - 1)); 
+				} else if (operator.contains("%")){ //percent
+					spreadsheet[rowNum][colNum] = new PercentCell(operator.substring(2, operator.length() - 1));
+				} else if (!operator.contains("(") || isNum(operator.substring(2))) { //value cell
+					spreadsheet[rowNum][colNum] = new ValueCell(operator.substring(2));
+				} else {//formula cell
+					spreadsheet[rowNum][colNum] = new FormulaCell(operator.substring(2), this);
+				}
+				return getGridText(); 
+			} catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+				return "ERROR: invalid cell assignment";
 			}
-			return getGridText(); 
 
 		} else if (commandArr[0].length() > 0){ //cell inspection
-			return getCell(command).fullCellText();
+			try {
+				return getCell(command).fullCellText();
+			} catch (NumberFormatException nfe) {
+				return "ERROR: invalid command";
+			}
 		}
 		return "";
 	}
@@ -115,15 +122,6 @@ public class Spreadsheet implements Grid
 			return true;
 		}
 		return false;
-	}
-
-	public boolean isNumber(String num) {
-		try {
-			Double.parseDouble(num);
-			return true;
-		} catch (NumberFormatException e) {
-			return false;
-		}
 	}
 
 }

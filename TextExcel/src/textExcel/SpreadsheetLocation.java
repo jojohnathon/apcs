@@ -26,8 +26,4 @@ public class SpreadsheetLocation implements Location
         this.cellName = cellName.toUpperCase();
     }
 
-    public String getCellName() {
-        return cellName;
-    }
-
 }
