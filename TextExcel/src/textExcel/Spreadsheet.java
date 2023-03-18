@@ -77,7 +77,11 @@ public class Spreadsheet implements Grid
 	@Override
 	public String getGridText()
 	{
-		String gridText = "   |A         |B         |C         |D         |E         |F         |G         |H         |I         |J         |K         |L         |\n";
+		String gridText = "   |";
+		for (char c = 'A'; c <= 'L'; c++) {
+			gridText += c + "         |";
+		}
+		gridText += "\n";
 		for (int i = 0; i < getRows(); i++) {
 			if (i <= 8) {
 				gridText += i + 1 + "  |";
