@@ -5,8 +5,8 @@ public class TextCell implements Cell {
 
     @Override
     public String abbreviatedCellText() {
-        String poop = text + "                               ";
-        return poop.substring(0, 10);
+        String temp = text + "                               ";
+        return temp.substring(0, 10);
     }
 
     @Override

@@ -9,7 +9,7 @@ public class Spreadsheet implements Grid
 	public String processCommand(String input) 
 	{
 		String[] commandArr = input.split(" ", 2);
-		SpreadsheetLocation command = new SpreadsheetLocation(commandArr[0]); //devious
+		SpreadsheetLocation command = new SpreadsheetLocation(commandArr[0]); 
 		String operator = "";
 		
 		if (commandArr.length >= 2) {
@@ -35,17 +35,20 @@ public class Spreadsheet implements Grid
 		} else if (operator.contains("=")) { //cell assignment
 			int index = operator.indexOf("\"") + 1;
 
-			// String cellText = operator.substring(index, operator.length() - 1);
 			int rowNum = command.getRow();
 			int colNum = command.getCol();
 			try {
-				if (index == 3) { //text cell
+				if (index == 3) { 
+					//create text cell
 					spreadsheet[rowNum][colNum] = new TextCell(operator.substring(index, operator.length() - 1)); 
-				} else if (operator.contains("%")){ //percent
+				} else if (operator.contains("%")){ 
+					//create percent cell
 					spreadsheet[rowNum][colNum] = new PercentCell(operator.substring(2, operator.length() - 1));
-				} else if (!operator.contains("(") || isNum(operator.substring(2))) { //value cell
+				} else if (!operator.contains("(") || isNum(operator.substring(2))) { 
+					//create value cell
 					spreadsheet[rowNum][colNum] = new ValueCell(operator.substring(2));
-				} else {//formula cell
+				} else {
+					//create formula cell
 					spreadsheet[rowNum][colNum] = new FormulaCell(operator.substring(2), this);
 				}
 				return getGridText(); 
@@ -53,7 +56,8 @@ public class Spreadsheet implements Grid
 				return "ERROR: invalid cell assignment";
 			}
 
-		} else if (commandArr[0].length() > 0){ //cell inspection
+		} else if (commandArr[0].length() > 0){ 
+			//cell inspection
 			try {
 				return getCell(command).fullCellText();
 			} catch (NumberFormatException nfe) {
@@ -84,10 +88,12 @@ public class Spreadsheet implements Grid
 	@Override
 	public String getGridText()
 	{
+		//generate column header letters
 		String gridText = "   |";
 		for (char c = 'A'; c <= 'L'; c++) {
 			gridText += c + "         |";
 		}
+		//create individual rows
 		gridText += "\n";
 		for (int i = 0; i < getRows(); i++) {
 			if (i <= 8) {

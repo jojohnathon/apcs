@@ -4,7 +4,6 @@ public class PercentCell extends RealCell {
 
     public PercentCell(String text) {
         super(text);
-        //TODO Auto-generated constructor stub
     }
 
     public double getDoubleValue() {
@@ -12,9 +11,10 @@ public class PercentCell extends RealCell {
     }
 
     public String abbreviatedCellText() {
-        if (super.fullCellText().indexOf(".") == -1 ) {
+        if (super.fullCellText().indexOf(".") == -1 ) { //check for decimal point and then add % sign
             return (super.fullCellText() + "%" + "             ").substring(0, 10);
         }
+        //truncate decimals and then add % sign
         return (super.fullCellText().substring(0, super.fullCellText().indexOf(".")) + "%" + "                 ").substring(0, 10);
     }
 
